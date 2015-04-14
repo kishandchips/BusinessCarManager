@@ -15,7 +15,7 @@ $class[] = ( !empty($dropdown) ) ? 'has-dropdown' : 'no-dropdown';
 		<?php endif; ?>
 		<?php if( !empty($dropdown) ) : ?>
 		<a class="primary-btn dropdown-btn"><?php _e("View Sections", 'businesscarmanager'); ?></a>
-		<div class="dropdown"><?php dynamic_sidebar('page_header') ?></div>
+		<div class="dropdown"><?php dynamic_sidebar('page_header'); ?></div>
 		<?php endif; ?>
 	</div>
 </header>
