@@ -50,6 +50,9 @@
 	}
 
 	.primary-categories {
+		@extend .clearfix;
+		margin: 0 0 2em 0;
+
 		.category {
 			width: 50%;
 			padding: 0 10px;
@@ -82,6 +85,39 @@
 
 		.cta-list {
 			clear: left;
+		}
+	}
+
+	.secondary-categories {
+		margin: 0 0 2em 0;
+		padding: 0 10px;
+
+		.category-posts {
+			margin: 0 0 2em 0;
+
+			.category-posts-header {
+				@include device-width(12) {
+					position: relative;
+					width: auto;
+				}
+			}
+
+			.posts {
+				@include device-width(12) {	
+					padding-left: 0;
+				}
+
+				@include device-width(8) {
+					overflow: auto;
+					padding-bottom: 0.5em;
+				}
+
+				.post-list {
+					@include device-width(8) {
+						min-width: 800px;
+					}
+				}
+			}
 		}
 	}
 }
@@ -169,7 +205,7 @@
 			}
 
 			.post-item {
-				@include flex(1);
+				@include flex(1 1 auto);
 				@include display(flex);
 				@include flex-flow(column);
 				// @include align-content(stretch);
@@ -186,7 +222,7 @@
 			}
 
 			.header {
-				@include flex(1);
+				@include flex(1 1 auto);
 			}
 
 			&:nth-child(1),
@@ -584,7 +620,7 @@
 	}
 
 	.sidebar {
-		padding-top: 2em;
+		padding-top: 3em;
 	}
 
 	.sidebar-content {
@@ -613,7 +649,7 @@
 			}
 		}
 		.hub-header {
-			padding: 1em 1em 1em 200px;
+			padding: 1em 1em 1em 210px;
 			position: relative;
 			background: #f6f6f6;
 

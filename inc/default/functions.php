@@ -214,3 +214,62 @@ if ( ! function_exists( 'sort_tag_score' )) {
 		}
 	}
 }
+
+if ( ! function_exists( 'widget_instance' )) {
+	function widget_instance($instance_id, $args = array()) {
+		global $wp_registered_widgets, $wp_registered_sidebars, $sidebars_widgets;
+
+		// validation
+		if ( !array_key_exists($instance_id, $wp_registered_widgets) ) {
+			echo 'No widget found with that id'; return;
+		}
+
+		// find sidebar 
+		foreach($sidebars_widgets as $sidebar => $sidebar_widget){
+			foreach($sidebar_widget as $widget){
+				if ($widget == $instance_id) $current_sidebar = $sidebar;
+			}
+		}
+
+		$presentation = (isset($current_sidebar)) ? $wp_registered_sidebars[$current_sidebar] : array(
+			'name' => '', 
+			'id' => '',
+			'description' => '',
+			'class' => '',
+			'before_widget'=> '',
+			'after_widget'=> '',
+			'before_title'=> '',
+			'after_title' => ''
+		);
+
+		if( !empty($args) ) {
+			$presentation = array_merge($presentation, $args);
+		}
+
+		$params = array_merge(
+			array( array_merge( $presentation, array('instance_id' => $instance_id, 'widget_name' => $wp_registered_widgets[$instance_id]['name']) ) ),
+			(array) $wp_registered_widgets[$instance_id]['params']
+		);
+
+		// Substitute HTML id and class attributes into before_widget
+		$classname_ = '';
+		
+		foreach ( (array) $wp_registered_widgets[$instance_id]['classname'] as $cn ) {
+			if ( is_string($cn) )
+				$classname_ .= '_' . $cn;
+			elseif ( is_object($cn) )
+				$classname_ .= '_' . get_class($cn);
+		}
+
+		$classname_ = ltrim($classname_, '_');
+		$params[0]['before_widget'] = sprintf($params[0]['before_widget'], $instance_id, $classname_);
+
+		$params = apply_filters( 'dynamic_sidebar_params', $params ); // doesnt't add/minus from data
+
+		$callback = $wp_registered_widgets[$instance_id]['callback'];
+
+		if ( is_callable($callback) ) {
+			call_user_func_array($callback, $params);
+		}
+	}
+}

@@ -252,7 +252,7 @@ table {
 
 .post-content {
 	@extend .clearfix;
-	
+
 	h1, h2, h3, h4, h5, h6 {
 		margin: 1em 0 0.5em 0;
 		@include tablet-gothic-bold;
@@ -606,16 +606,33 @@ table {
 
 	.posts {
 		padding: 0 0 0 220px;
+
 	}
 
 	.post-list {
 		margin: 0 -10px;
 		@extend .clearfix;
+		@include display(flex);
+		@include flex-flow(wrap);
+		
 
 		.post {
 			padding: 0 10px;
 			float: left;
 			width: 33%;
+			@include display(flex);
+			@include flex-flow(column);
+			@include flex(1 0 0%);
+
+			.post-item {
+				@include flex(1 0 0%);
+				@include display(flex);
+				@include flex-flow(column);
+			}
+
+			.header {
+				@include flex(1 0 0%);
+			}
 		}
 	}
 }
