@@ -1,0 +1,279 @@
+/* =============================================================================
+   Forms
+   ========================================================================== */
+
+input[type=text],
+input[type=email],
+input[type=url],
+input[type=tel],
+input[type=number],
+input[type=password], 
+textarea,
+select {
+	@include box-sizing(border-box);
+	color: #000;
+	border: 1px solid #dddddd;
+	@include font-size(16);
+	@include interface-bold;
+	padding: 1em;
+	background: #FFF;
+	@include box-shadow(0 1px 0 rgba(#000, 0.2));
+	@include border-radius(3px);
+	
+	&:focus {
+		outline: none;
+	}
+}
+
+input[type=text],
+input[type=email],
+input[type=url],
+input[type=tel],
+input[type=number],
+input[type=password],
+textarea {
+	max-width: 100%;
+
+	&:focus {
+		color: #000;
+	}
+}
+
+textarea {
+}
+
+select {
+	-webkit-appearance: none;
+	display: inline-block;
+	position: relative;
+	@media screen and (-webkit-min-device-pixel-ratio:0) {
+		padding-right: 60px;
+		background: #FFF url(../images/misc/dropdown.png) no-repeat center right;
+	}
+
+	option {
+		text-transform: none;
+		font-family: sans-serif;
+		padding: 0.5em;
+	}
+	
+}
+
+textarea {
+	height: 200px;
+}
+
+input[type=submit],
+input[type=reset],
+button[type=submit] {	
+	@extend .secondary-btn;
+
+	&:focus {
+		outline: none;
+	}
+}
+
+
+button::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+input[type="radio"]::-moz-focus-inner,
+option::-moz-focus-inner,
+select::-moz-focus-inner,
+input[type="file"] > input[type="button"]::-moz-focus-inner {
+	border: none !important;
+	outline: none !important;
+}
+
+label {
+	@include interface-bold;
+}
+
+fieldset {
+	border: none;
+	padding: 0;
+}
+
+::-webkit-input-placeholder {}
+
+:-moz-placeholder {}
+
+::-moz-placeholder {}
+
+:-ms-input-placeholder {}
+
+[placeholder]:focus::-webkit-input-placeholder {
+	@include transition( opacity 0.5s ease);
+	opacity: 0;
+}
+/* =============================================================================
+   Gravity
+   ========================================================================== */
+
+.validation_error {
+	color: #ccc;
+	@include interface;
+}
+
+.gform_validation_container {
+	display: none;
+}
+
+.gform_confirmation_message {
+	text-align: center;
+}
+
+.gfield {
+	&.hide-label {
+		.gfield_label {
+			display: none !important;
+		}
+	}
+
+	&.gf_left_half,
+	&.gf_right_half {
+
+		input,
+		textarea,
+		select {
+			width: 100% !important;
+		}
+	}
+
+	input,
+	textarea,
+	select {
+		min-width: 220px;
+
+		&.large {
+			width: 100%;		
+		}
+	}
+
+	textarea {
+		width: 100%;
+	}
+}
+
+.gfield_label {
+	.gfield_required {
+		color: #f74d4e;
+	}
+}
+
+.gform_footer {
+	
+}
+
+.search-form {
+	position: relative;
+	
+	input[type=text] {
+		vertical-align: middle;
+		border-color: transparent;
+		@include transition(all 0.3s ease);
+		background: #FFF;
+		color: #c0c0c0;
+		border: none;
+		@include border-radius(0);
+		@include box-shadow(none);
+		padding: 0.9em 1em;
+	}
+
+	.submit-btn {
+		color: #c0c0c0;
+		vertical-align: middle;
+		padding: 1em;
+		@include font-size(16);
+		@include border-radius(0);
+
+		
+		&:before {
+			line-height: 0.9;
+		}
+	}
+}
+
+
+.comment-form {
+
+	p {
+		margin: 0.5em 0;
+	}
+
+
+	.required {
+		color: #f74d4e;
+	}
+
+	.comment-form-author,
+	.comment-form-email,
+	.comment-form-url,
+	.comment-form-comment {
+		@extend .clearfix;
+	}
+
+	.comment-form-author,
+	.comment-form-email {
+		float: left;
+		width: 49%;
+
+		@include device-width(6) {
+			float: none;
+			width: auto;
+		}
+	}
+
+	.comment-form-author {
+		margin-right: 2%;
+
+		@include device-width(6) {
+			margin-right: 0;
+		}
+	}
+
+	.comment-form-url {
+		clear: left;
+	}
+
+	.comment-form-comment {
+		label {
+			padding-top: 0;
+		}
+	}
+
+	label {
+		display: block;
+		width: 80px;
+		// display: block;
+		float: left;
+		// letter-spacing: 1px;
+		padding: 1em 0 0 0;
+	}
+
+	input[type=text],
+	input[type=email],
+	input[type=url],
+	textarea {
+		// background: #FFF;
+		// border: 1px solid #eeeeee;
+		width: calc(100% - 80px);
+		// @include box-sizing(border-box);
+		float: left;
+		// @include font-size(13);
+		// @include futura;
+		// text-transform: none;
+	}
+
+	.form-submit {
+		text-align: right;
+
+		// input[type=submit] {
+		// 	@extend .primary-btn;
+		// }
+	}
+}
+
+
+
