@@ -1,0 +1,1 @@
+<div id="<?php echo $placement_id; ?>" class="advert" data-placement-id="<?php echo $placement_id; ?>"></div>

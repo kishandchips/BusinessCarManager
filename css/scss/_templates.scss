@@ -1,0 +1,803 @@
+#front-page {
+	.sidebar-container {
+		padding-top: 3em;
+		padding-bottom: 5em;
+	}
+
+	.sidebar-content {
+		padding-right: 3em;
+
+		@include device-width(14) {
+			padding-right: 2em;
+		}
+
+		@include device-width(12) {
+			padding-right: 1em;
+		}
+
+		@include device-width(10) {
+			padding-right: 0;
+		}
+	}
+
+	.cta-list {
+		@extend .clearfix;
+
+		@include device-width(9) {
+			overflow: auto;
+			white-space: nowrap;
+			padding-bottom: 0.5em;
+		}
+
+		li {
+			float: left;
+			padding: 0 10px;
+			margin-bottom: 2em;
+			width: 33.33%;
+			min-width: 280px;
+
+
+			@include device-width(9) {
+				float: none;
+				display: inline-block;
+				white-space: normal;
+			}
+
+			.cta-btn {
+				height: 140px;
+			}
+		}
+	}
+
+	.primary-categories {
+		.category {
+			width: 50%;
+			padding: 0 10px;
+			margin-bottom: 2em;
+			float: left;
+
+			&:nth-of-type(2n + 1) {
+				clear: left;
+			}
+
+			@include device-width(6) {
+				width: auto;
+				float: none;
+			}
+		}
+
+		.category-item {
+			.header {
+				@include device-width(8) {
+					padding: 1em;
+				}
+
+				.description {
+					@include device-width(6) {
+						height: auto;
+					}
+				}
+			}
+		}
+
+		.cta-list {
+			clear: left;
+		}
+	}
+}
+#category {
+
+	.sidebar-container {
+		padding-top: 3em;
+		padding-bottom: 3em;
+	}
+
+	.sidebar-content {
+		padding-right: 3em;
+
+		@include device-width(14) {
+			padding-right: 2em;
+		}
+
+		@include device-width(12) {
+			padding-right: 1em;
+		}
+
+		@include device-width(10) {
+			padding-right: 0;
+		}
+	}
+
+	.category-description {
+		margin-bottom: 2em;
+
+		.tax-links {
+			margin-left: -5px;
+			margin-right: -5px;
+
+			@include device-width(9) {
+				overflow: auto;
+				// margin-left: 0;
+				// margin-right: 0;
+				white-space: nowrap;
+				padding-bottom: 0.5em;
+			}
+
+			li {
+				min-width: 280px;
+
+				@include device-width(9) {
+					float: none;
+					display: inline-block;
+				}
+			}
+		}
+
+		.dropdown-menu {
+			padding: 1em;
+			background: #eeeeee;
+
+			.label {
+				display: inline-block;
+				vertical-align: middle;
+				@include interface-bold;
+				margin: 0 1em 0 0;
+			}
+
+			.navigation {
+				display: inline-block;
+				vertical-align: middle;
+			}
+		}
+	}
+
+	.posts {
+		@include display(flex);
+		@include flex-flow(wrap);
+		margin: 0 -10px;
+
+		.post {
+			width: 33.333%;
+			float: left;
+			padding: 0 10px;
+			margin: 0 0 2em 0;
+			@include display(flex);
+			@include flex-flow(column);
+
+			@include device-width(6) {
+				width: 100%;
+			}
+
+			.post-item {
+				@include flex(1);
+				@include display(flex);
+				@include flex-flow(column);
+				// @include align-content(stretch);
+			}
+
+			.post-image {
+				.btn {
+					min-height: 310px;
+
+					@include device-width(10) {
+						min-height: 200px;
+					}
+				}
+			}
+
+			.header {
+				@include flex(1);
+			}
+
+			&:nth-child(1),
+			&:nth-child(4) {
+				width: 60%;
+
+				@include device-width(8) {
+					width: 100%;
+				}
+			}
+
+			&:nth-child(2),
+			&:nth-child(3) {
+				width: 40%;
+
+				@include device-width(8) {
+					width: 50%;
+				}
+
+				@include device-width(6) {
+					width: 100%;
+				}
+			}
+
+			&:nth-child(3),
+			&:nth-child(5),
+			&:nth-child(12) {
+				clear: left;
+			} 
+
+			&:nth-child(5),
+			&:nth-child(6),
+			&:nth-child(7) {
+
+				.post-title {
+					@include font-size(30);
+				}
+
+				.post-image {
+					.btn {
+						min-height: 260px;
+					}
+				}
+			}
+
+			&:nth-child(n + 8) {
+				width: 25%;
+
+				@include device-width(6) {
+					width: 100%;
+				}
+
+				.post-item {
+					border-top: 1px solid #31449A;
+				}
+				.post-title {
+					@extend h6;
+					line-height: 1.1;
+				}
+			}
+		}
+	}
+}
+
+#index {
+
+	.sidebar-container {
+		padding-top: 3em;
+		padding-bottom: 3em;
+	}
+
+	.sidebar-content {
+		padding-right: 3em;
+
+		@include device-width(14) {
+			padding-right: 2em;
+		}
+
+		@include device-width(12) {
+			padding-right: 1em;
+		}
+
+		@include device-width(10) {
+			padding-right: 0;
+		}
+	}
+
+	.posts {
+		@include display(flex);
+		@include flex-flow(wrap);
+		margin: 0 -10px;
+
+		.post {
+			width: 33.333%;
+			float: left;
+			padding: 0 10px;
+			margin: 0 0 2em 0;
+			@include display(flex);
+			@include flex-flow(column);
+
+			@include device-width(6) {
+				width: 100%;
+			}
+
+			.post-item {
+				@include flex(1);
+				@include display(flex);
+				@include flex-flow(column);
+				// @include align-content(stretch);
+			}
+
+			.post-image {
+				.btn {
+					min-height: 310px;
+
+					@include device-width(10) {
+						min-height: 200px;
+					}
+				}
+			}
+
+			.header {
+				@include flex(1);
+			}
+		}
+	}
+}
+
+#single {
+	.post-header {
+		padding: 0 10px;
+
+		.title {
+			padding: 0.5em 0;
+			border-bottom: #999 1px solid;
+		}
+	}
+
+	.sidebar-container {
+		padding-top: 2em;
+		margin-bottom: 5em;
+	}
+
+	.sidebar-content {
+		padding-right: 3em;
+
+		@include device-width(14) {
+			padding-right: 2em;
+		}
+
+		@include device-width(12) {
+			padding-right: 1em;
+		}
+
+		@include device-width(10) {
+			padding-right: 0;
+		}
+	}
+
+	.single-post {
+		padding-left: 220px;
+		position: relative;
+
+		@include device-width(10) {
+			padding-left: 0;
+		}
+
+		.post-image {
+			margin-left: -220px;
+			margin-bottom: 2em;
+
+			@include device-width(10) {
+				margin-left: 0;
+			}
+
+			img {
+				width: 100%;
+			}
+		}
+
+		.post-info {
+			width: 180px;
+			position: absolute;
+			left: 0;
+			@extend .clearfix;
+
+			@include device-width(10) {
+				position: relative;
+				width: auto;
+				border-bottom: 1px solid #DDD;
+			}
+
+			.post-date,
+			.post-author {
+				@include device-width(10) {
+					padding: 0.5em 0;
+					border-bottom: none;
+				}
+
+				.value {
+					@include device-width(10) {
+						display: inline-block;
+					}
+				}
+			}
+
+			.post-author {
+				@include device-width(10) {
+					float: right;
+				}
+
+				@include device-width(5) {
+					display: none;
+				}
+			}
+			.post-date {
+				@include device-width(10) {
+					float: left;
+				}
+			}
+
+			.post-share {
+				@include device-width(10) {
+					display: none;
+				}
+			}
+		}
+	}
+
+	.post-content {
+		
+		padding: 0 0 1em 0;
+
+		.size-large {
+			width: 100%;
+			display: inline-block;
+			vertical-align: top;
+		}
+
+		.wp-caption,
+		.caption {
+			.wp-caption-text {
+				@include device-width(6) {
+					position: relative;
+					margin: 0;
+				}
+			}
+		}
+	}
+
+	.post-misc {
+		border-bottom: 1px solid #ececec;
+		padding: 1em 0;
+		@extend .clearfix;
+
+		.post-pagination {
+			float: left;
+
+			@include device-width(6) {
+				float: none;
+			}
+		}
+
+		.share-links {
+			float: right;
+
+			@include device-width(6) {
+				float: none;
+			}
+
+			a {
+				@include font-size(15);
+
+				&:before {
+
+				}
+			}
+		}
+	}
+
+	.post-comments {
+		margin: 1em 0;
+		padding: 1em 0;
+		border-bottom: 1px solid #ececec;
+
+		.comment-respond {
+			margin-bottom: 1em;
+		}
+	}
+
+	.post-tags {
+		margin: 1em 0;
+		padding: 1.5em 0;
+
+		@include device-width(6) {
+			display: none;
+		}
+	}
+
+	.related-posts {
+		margin: 2em 0;
+		.category-posts {
+			.category-posts-header {
+				@include device-width(12) {
+					position: relative;
+					width: auto;
+				}
+			}
+
+			.posts {
+				@include device-width(12) {	
+					padding-left: 0;
+				}
+
+				@include device-width(8) {
+					overflow: auto;
+					padding-bottom: 0.5em;
+				}
+
+				.post-list {
+					@include device-width(8) {
+						min-width: 800px;
+					}
+				}
+			}
+		}
+	}
+}
+
+#page {
+	
+	.sidebar-container {
+		padding-top: 2em;
+		margin-bottom: 5em;
+	}
+
+	.sidebar-content {
+		padding-right: 3em;
+
+		@include device-width(14) {
+			padding-right: 2em;
+		}
+
+		@include device-width(12) {
+			padding-right: 1em;
+		}
+
+		@include device-width(10) {
+			padding-right: 0;
+		}
+	}
+}
+
+#archive-hub {
+
+	.hubs {
+		margin: 3em 0;
+		@extend .clearfix;
+
+		.hub {
+			float: left;
+			width: 33.333%;
+			padding: 0 10px;
+			margin: 0 0 2em 0;
+
+			&:nth-child(3n + 1) {
+				clear: left;
+			}
+
+			@include device-width(10) {
+				width: 50%;
+			}
+
+			@include device-width(6) {
+				width: auto;
+				float: none;
+			}
+
+			.hub-item {
+				.header {
+					padding-left: 80px;
+				}
+				.logo {
+					width: 50px;
+				}
+			}
+		}
+	}
+}
+
+#single-hub {
+
+	.sidebar-container {
+		margin-bottom: 5em;
+	}
+
+	.sidebar {
+		padding-top: 2em;
+	}
+
+	.sidebar-content {
+		padding-right: 3em;
+
+		@include device-width(14) {
+			padding-right: 2em;
+		}
+
+		@include device-width(12) {
+			padding-right: 1em;
+		}
+
+		@include device-width(10) {
+			padding-right: 0;
+		}
+	}
+
+
+	.single-hub {
+
+		.hub-image {
+			img {
+				display: block;
+				width: 100%;
+			}
+		}
+		.hub-header {
+			padding: 1em 1em 1em 200px;
+			position: relative;
+			background: #f6f6f6;
+
+			@include device-width(8) {
+				padding-left: 1em;
+			}
+
+			.logo {
+				position: absolute;
+				bottom: 1em;
+				left: 1em;
+				border: 1px solid #c1c1c1;
+
+				@include device-width(8) {
+					display: none;
+				}
+
+				img {
+					display: inline-block;
+					vertical-align: top;
+				}
+			}
+
+			.title {
+				@include interface-bold;
+			}
+		}
+	}
+
+	.related-posts {
+		margin: 2em -10px;
+		@extend .clearfix;
+
+		.post {
+			float: left;
+			width: 33.333%;
+			padding: 0 10px;
+			margin: 0 0 3em 0;
+
+			@include device-width(7) {
+				width: 50%;
+			}
+
+			@include device-width(5) {
+				float: none;
+				width: auto;
+			}
+
+			&:nth-child(1),
+			&:nth-child(2) {
+				width: 50%;
+
+				@include device-width(5) {
+					width: auto;
+				}
+			}
+
+			&:nth-child(3) {
+				clear: left;
+			}
+		}
+	}
+
+	.related-category-posts {
+		margin: 2em 0;
+
+		.category-posts {
+			margin: 0 0 1em 0;
+
+			.category-posts-header {
+				@include device-width(12) {
+					position: relative;
+					width: auto;
+				}
+			}
+
+			.posts {
+				@include device-width(12) {	
+					padding-left: 0;
+				}
+
+				@include device-width(8) {
+					overflow: auto;
+					padding-bottom: 0.5em;
+				}
+
+				.post-list {
+					@include device-width(8) {
+						min-width: 800px;
+					}
+				}
+			}
+		}
+	}
+}
+
+#single-supplier {
+	.supplier-header {
+		padding: 0 10px;
+
+		.title {
+			padding: 0.5em 0;
+			border-bottom: #999 1px solid;
+		}
+	}
+
+	.sidebar-container {
+		padding-top: 2em;
+		margin-bottom: 5em;
+	}
+
+	.sidebar-content {
+		padding-right: 3em;
+
+		@include device-width(14) {
+			padding-right: 2em;
+		}
+
+		@include device-width(12) {
+			padding-right: 1em;
+		}
+
+		@include device-width(10) {
+			padding-right: 0;
+		}
+	}
+
+	.single-supplier {
+		padding-left: 220px;
+		position: relative;
+
+		@include device-width(10) {
+			padding-left: 0;
+		}
+
+		.supplier-info {
+			width: 180px;
+			position: absolute;
+			left: 0;
+			@extend .clearfix;
+
+			@include device-width(10) {
+				position: relative;
+				width: auto;
+				border-bottom: 1px solid #DDD;
+			}
+		}
+	}
+
+	.post-content {
+		
+		padding: 0 0 1em 0;
+
+		.size-large {
+			width: 100%;
+			display: inline-block;
+			vertical-align: top;
+		}
+
+		.wp-caption,
+		.caption {
+			.wp-caption-text {
+				@include device-width(6) {
+					position: relative;
+					margin: 0;
+				}
+			}
+		}
+	}
+
+	.post-tags {
+		margin: 1em 0;
+		padding: 1.5em 0;
+
+		@include device-width(6) {
+			display: none;
+		}
+	}
+}
+
+
+#error {
+	> .inner {
+		text-align: center;
+		padding: 10% 10px;
+	}
+}

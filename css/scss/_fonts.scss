@@ -1,0 +1,39 @@
+@mixin arial {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.arial {
+	@include arial;
+}
+
+@mixin interface {
+	font-family: 'InterFace W01';
+	font-weight: 400;
+	font-style: normal;
+}
+
+.interface {
+	@include interface;
+}
+
+@mixin interface-bold {
+	font-family: 'InterFace W01';
+	font-weight: 700;
+	font-style: normal;
+}
+
+.interface-bold {
+	@include interface-bold;
+}
+
+@mixin tablet-gothic-bold {
+	font-family: 'Tablet Gothic W01';
+	font-weight: 700;
+	font-style: normal;
+}
+
+.tablet-gothic-bold {
+	@include tablet-gothic-bold;
+}
+
+

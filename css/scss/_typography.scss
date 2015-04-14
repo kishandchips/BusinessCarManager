@@ -1,0 +1,226 @@
+
+a {
+	text-decoration: none;
+	color: #000;
+	cursor: pointer;
+	@include transition(all 0.3s ease);
+	&:hover {
+		color: #ee4503;
+	}
+}
+
+h1, h2, h3, h4, h5, h6, p {
+	margin: 0;
+}
+
+h1 {
+	@include tablet-gothic-bold;
+	@include font-size(85);
+	line-height: 1;
+
+	@include device-width(12) {
+		@include font-size(82);
+	}
+
+	@include device-width(10) {
+		@include font-size(60);
+	}
+
+	@include device-width(8) {
+		@include font-size(50);
+	}
+
+	@include device-width(6) {
+		@include font-size(40);
+	}
+
+	@include device-width(4) {
+		@include font-size(35);
+	}
+}
+
+h2 {
+	@include interface;
+	@include font-size(50);
+	line-height: 1;
+
+	@include device-width(12) {
+		@include font-size(45);
+	}
+
+	@include device-width(10) {
+		@include font-size(40);
+	}
+
+	@include device-width(8) {
+		@include font-size(35);
+	}
+
+	@include device-width(6) {
+		@include font-size(32);
+	}
+
+	@include device-width(4) {
+		@include font-size(30);
+	}
+}
+
+h3 {
+	@include tablet-gothic-bold;
+	@include font-size(40);
+	line-height: 1;
+
+
+	@include device-width(12) {
+		@include font-size(38);
+	}
+
+	@include device-width(10) {
+		@include font-size(34);
+	}
+
+	@include device-width(8) {
+		@include font-size(32);
+	}
+
+	@include device-width(6) {
+		@include font-size(30);
+	}
+
+	@include device-width(4) {
+		@include font-size(28);
+	}
+}
+
+h4 {
+	@include interface;
+	@include font-size(35);
+	line-height: 1;
+
+
+	@include device-width(12) {
+		@include font-size(32);
+	}
+
+	@include device-width(10) {
+		@include font-size(30);
+	}
+
+	@include device-width(8) {
+		@include font-size(28);
+	}
+
+	@include device-width(6) {
+		@include font-size(24);
+	}
+
+	@include device-width(4) {
+		@include font-size(20);
+	}
+}
+
+h5 {
+	@include interface;
+	@include font-size(28);
+	line-height: 1;
+
+	@include device-width(12) {
+		@include font-size(26);
+	}
+
+	@include device-width(10) {
+		@include font-size(24);
+	}
+
+	@include device-width(8) {
+		@include font-size(22);
+	}
+
+	@include device-width(6) {
+		@include font-size(20);
+	}
+
+	@include device-width(4) {
+		@include font-size(18);
+	}
+}
+
+h6 {
+	@include interface-bold;
+	@include font-size(20);
+
+	@include device-width(6) {
+		@include font-size(18);
+	}
+
+	@include device-width(4) {
+		@include font-size(16);
+	}
+}
+
+
+.huge {
+	font-size: 150%;
+}
+
+.big {
+	font-size: 130%;
+}
+
+.small {
+	font-size: 90%;
+}
+
+.tiny {
+	font-size: 70%;
+}
+
+.bold,
+strong,
+b {
+	font-weight: bold;
+}
+
+.normal {
+	font-weight: normal;
+}
+
+.italic {
+	font-style: italic;
+}
+
+.align-left,
+.text-left {
+	text-align: left;
+}
+
+.align-right,
+.text-right {
+	text-align: right;
+}
+
+.align-center,
+.text-center {
+	text-align:  center;
+}
+
+.align-middle,
+.text-middle {
+	vertical-align: middle;
+}
+
+.normal-style {
+	font-style: normal;	
+}
+
+.underline {
+	text-decoration: underline;	
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+.normalcase {
+	text-transform: none;
+}
