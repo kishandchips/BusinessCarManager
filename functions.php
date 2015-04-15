@@ -206,6 +206,8 @@ function custom_widgets_init() {
 
 	include( $template_directory . '/inc/widgets/advert.php');
 
+	include( $template_directory . '/inc/widgets/widgets.php');
+
 	/********************** Sidebars ***********************/
 
 	register_sidebar( array(
@@ -246,31 +248,14 @@ function custom_widgets_init() {
 	) );
 
 	register_sidebar( array(
-		'name' => __( 'Post Content', 'businesscarmanager' ),
-		'id' => 'post_content',
+		'name' => __( 'Instances', 'businesscarmanager' ),
+		'id' => 'instances',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget' => '</aside>',
 		'before_title' => '<h5 class="widget-title">',
 		'after_title' => '</h5>',
 	) );
 
-	// register_sidebar( array(
-	// 	'name' => __( 'Order Complete', 'businesscarmanager' ),
-	// 	'id' => 'order_complete',
-	// 	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-	// 	'after_widget' => '</aside>',
-	// 	'before_title' => '<h5 class="widget-title">',
-	// 	'after_title' => '</h5>',
-	// ) );
-
-	// register_sidebar( array(
-	// 	'name' => __( 'ACF - Widgets', 'businesscarmanager' ),
-	// 	'id' => 'acf',
-	// 	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-	// 	'after_widget' => '</aside>',
-	// 	'before_title' => '<h5 class="widget-title">',
-	// 	'after_title' => '</h5>',
-	// ) );
 }
 
 function custom_scripts() {
@@ -571,10 +556,14 @@ function custom_widget($atts){
 
 	extract(shortcode_atts(array(
         'id'    => '0',
+        ''
     ), $atts));
 
+    $class = array('widget %2$s');
+    $class[] = ( !empty($postion)) ? $positon : '';
+
     ob_start();
-    widget_instance($id);
+    widget_instance($id, array('<aside id="%1$s" class="'.implode(' ', $class).'">'));
     return ob_get_clean();
 }
 
