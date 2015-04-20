@@ -4,7 +4,7 @@
 			<img src="<?php echo $image_url ?>" />
 		</figure>
 		<heade class="supplier-header header">
-			<h5 class="title"><?php echo $title; ?></h5>
+			<h6 class="title"><?php echo $title; ?></h6>
 		</header>
 	</a>
 </div>

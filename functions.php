@@ -143,10 +143,10 @@ function custom_init(){
 
 	   	$hub->register_post_type();
 
-	   	// $hub->register_taxonomy('press_category', 
-	   	// 	array('hierarchical' => true, 'rewrite' => array( 'slug' => 'press-category')), 
-	   	// 	array('plural' => __("Categories", 'businesscarmanager'), 'singular_name' => __("Category", 'businesscarmanager'))
-	   	// );
+	   	$hub->register_taxonomy('hub_category', 
+	   		array('hierarchical' => true, 'rewrite' => array( 'slug' => 'hub-category')), 
+	   		array('plural' => __("Categories", 'businesscarmanager'), 'singular_name' => __("Category", 'businesscarmanager'))
+	   	);
 	}
 
 	if( $suppliers_page = get_field('suppliers_page', 'options') ) {
@@ -204,6 +204,8 @@ function custom_wp(){
 function custom_widgets_init() {
 	global $template_directory;
 
+	$primary_categories = get_field('primary_categories', 'options');
+
 	include( $template_directory . '/inc/widgets/advert.php');
 
 	include( $template_directory . '/inc/widgets/widgets.php');
@@ -228,14 +230,7 @@ function custom_widgets_init() {
 		'after_title' => '</h6>',
 	) );
 
-	register_sidebar( array(
-		'name' => __( 'Page Header', 'businesscarmanager' ),
-		'id' => 'page_header',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget' => '</aside>',
-		'before_title' => '<h6 class="widget-title">',
-		'after_title' => '</h6>',
-	) );
+
 
 	register_sidebar( array(
 		'name' => __( 'Header', 'businesscarmanager' ),
@@ -246,6 +241,21 @@ function custom_widgets_init() {
 		'after_title' => '</h5>',
 		'limit' => 1
 	) );
+
+	if( $primary_categories) {
+		foreach( $primary_categories as $primary_category ) {
+			$category = get_category($primary_category);
+
+			register_sidebar( array(
+				'name' => __( 'Category Header', 'businesscarmanager' ) . ' - ' . $category->name,
+				'id' => 'category_header_'.$primary_category,
+				'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+				'after_widget' => '</aside>',
+				'before_title' => '<h6 class="widget-title">',
+				'after_title' => '</h6>',
+			) );
+		}
+	}
 
 	register_sidebar( array(
 		'name' => __( 'Instances', 'businesscarmanager' ),
@@ -360,7 +370,7 @@ function custom_pre_get_posts($query) {
 
 	$post_type_pages = array();
 	if( $hubs_page = get_field('hubs_page', 'options')) $post_type_pages[$hubs_page] = 'hub';
-	if( $suppliers_page = get_field('suppliers_page', 'options'))$post_type_pages[$suppliers_page] = 'supplier';
+	if( $suppliers_page = get_field('suppliers_page', 'options')) $post_type_pages[$suppliers_page] = 'supplier';
 
 	if ( $GLOBALS['wp_rewrite']->use_verbose_page_rules && isset( $query->queried_object_id ) ) {
 		if( array_key_exists( $query->queried_object_id, $post_type_pages) ) {
@@ -374,6 +384,10 @@ function custom_pre_get_posts($query) {
 			$query->is_page              = false;
 		}
 	}
+
+	// $q->is_tax( get_object_taxonomies( 'product' ) ) {
+
+	// }
 
     if( isset($_GET['view']) ){
     	switch($_GET['view']) {

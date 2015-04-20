@@ -393,6 +393,8 @@ table {
 			}
 		}
 	}
+
+	.widget {}
 }
 
 
@@ -1169,7 +1171,7 @@ table {
 
 .supplier-info {
 
-	a:not([class$="-btn"]) {
+	a {
 		color: #ee4503;
 		@include interface-bold;
 		&:hover {
@@ -1186,6 +1188,59 @@ table {
 
 	.post-share {
 		padding: 0.5em 0;
+	}
+}
+
+.supplier-item {
+	.btn {
+		display: block;
+	}
+
+	.image {
+		border: 1px solid #ccc;
+		padding: 1em;
+		margin: 0 0 0.3em 0;
+		text-align: center;
+		height: 160px;
+		line-height: 160px;
+
+		img {
+			display: inline-block;
+			max-width: 100%;
+			max-height: 100%;
+		}
+	}
+}
+
+.supplier-categories-navigation {
+	.menu {
+		@extend .clearfix;
+
+		li {
+			float: left;
+			margin: 0 0.5em 0.5em 0;
+
+			&.current,
+			&.current-cat {
+				a {
+					background: #EE4503;
+					color: #FFF;
+				}
+			}
+
+			a {
+				display: inline-block;
+				@include interface-bold;
+				background: #e7e7e7;
+				color: #000;
+				padding: 0.5em 1em;
+				@include border-radius(4px);
+
+				&:hover {
+					background: #a4a4a4;
+				}
+			}
+		}
 	}
 }
 
