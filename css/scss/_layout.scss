@@ -410,6 +410,7 @@ body {
 		> .inner {
 			position: fixed;
 			top: 0;
+			bottom: auto;
 		}
 	}
 
@@ -417,6 +418,7 @@ body {
 		> .inner {
 			position: fixed;
 			bottom: 0;
+			top: auto;
 		}
 	}
 
@@ -424,7 +426,8 @@ body {
 		
 		> .inner {
 			position: absolute;
-			bottom: 0;			
+			bottom: 0;	
+			top: auto;		
 		}
 	}
 }

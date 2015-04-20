@@ -1,7 +1,7 @@
 #front-page {
 	.sidebar-container {
-		padding-top: 3em;
-		padding-bottom: 5em;
+		margin-top: 3em;
+		margin-bottom: 5em;
 	}
 
 	.sidebar-content {
@@ -124,8 +124,8 @@
 #category {
 
 	.sidebar-container {
-		padding-top: 3em;
-		padding-bottom: 3em;
+		margin-top: 3em;
+		margin-bottom: 3em;
 	}
 
 	.sidebar-content {
@@ -290,8 +290,8 @@
 #index {
 
 	.sidebar-container {
-		padding-top: 3em;
-		padding-bottom: 3em;
+		margin-top: 3em;
+		margin-bottom: 3em;
 	}
 
 	.sidebar-content {
@@ -362,7 +362,7 @@
 	}
 
 	.sidebar-container {
-		padding-top: 2em;
+		margin-top: 2em;
 		margin-bottom: 5em;
 	}
 
@@ -471,6 +471,17 @@
 				}
 			}
 		}
+
+		.widget,
+		.callout,
+		.leftBox,
+		.rightbox {
+			@include device-width(5) {
+				width: auto;
+				float: none;
+				margin: 1em 0;
+			}
+		}
 	}
 
 	.post-misc {
@@ -555,7 +566,7 @@
 #page {
 	
 	.sidebar-container {
-		padding-top: 2em;
+		margin-top: 2em;
 		margin-bottom: 5em;
 	}
 
@@ -832,7 +843,7 @@
 	}
 
 	.sidebar-container {
-		padding-top: 2em;
+		margin-top: 2em;
 		margin-bottom: 5em;
 	}
 

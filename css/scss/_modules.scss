@@ -92,6 +92,7 @@ dl {
 		.advert {
 			background: #eeeeee;
 			padding: 10px;
+
 		}
 	}
 }
@@ -341,12 +342,12 @@ table {
 
 	.leftBox {
 		float: left;
-		margin-right: 2em;
+		margin: 1em 2em 1em 0;
 	}
 
 	.rightBox {
 		float: right;
-		margin-left: 2em;
+		margin: 1em 0 1em 2em;
 	}
 
 	.callout {
@@ -354,7 +355,7 @@ table {
 		border-bottom: 1px solid #383D62;
 		width: 255px;
 		float: right;
-		margin-left: 2em;
+		margin: 1em 0 1em 2em;
 	}
 
 	ul {
@@ -394,7 +395,17 @@ table {
 		}
 	}
 
-	.widget {}
+	.widget {
+		&.left {
+			float: left;
+			margin: 1em 2em 1em 0;
+		}
+
+		&.right {
+			float: right;
+			margin: 1em 0 1em 2em;
+		}
+	}
 }
 
 
