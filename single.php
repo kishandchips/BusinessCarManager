@@ -20,7 +20,7 @@
 	<?php include_module('page-header', array(
 		'title' => $category->name,
 		'color' => $color,
-		'dropdown' => true
+		'sidebar' => 'category_header_'.$category->term_id
 	)); ?>
 	<div class="post-header container">
 		<h1 class="post-title title"><?php the_title(); ?></h1>
@@ -84,6 +84,12 @@
 							<p>The rest of this content is restricted to logged-in users. Please <a clas="login-btn">login</a> to continue reading. Can't log in to read the content? Don't panic! Our guys Will and Dario will sort you out. Email <a href="mailto:SFLFadmin@businesscarmanager.co.uk">SFLFadmin@businesscarmanager.co.uk</a>.</p>
 						</div>
 					<?php else: ?>
+
+					<?php if( $verdict = get_field('verdict') ) : ?>
+					<div class="verdict message"><?php echo $verdict; ?></div>
+					<?php endif; ?>
+
+
 					<?php the_content(); ?>
 					<?php endif; ?>
 				</div>

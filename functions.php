@@ -567,14 +567,14 @@ function custom_widget($atts){
 
 	extract(shortcode_atts(array(
         'id'    => '0',
-        ''
+        'position' => 'left'
     ), $atts));
 
     $class = array('widget %2$s');
-    $class[] = ( !empty($postion)) ? $positon : '';
+    $class[] = ( !empty($position) ) ? $position : '';
 
     ob_start();
-    widget_instance($id, array('<aside id="%1$s" class="'.implode(' ', $class).'">'));
+    widget_instance($id, array('before_widget' => '<aside id="%1$s" class="'.implode(' ', $class).'">'));
     return ob_get_clean();
 }
 
