@@ -406,15 +406,22 @@ body {
 }
 
 #sidebar {
-	&.sticky {
+	&.sticky-top {
+		> .inner {
+			position: fixed;
+			top: 0;
+		}
+	}
+
+	&.sticky-bottom {
 		> .inner {
 			position: fixed;
 			bottom: 0;
 		}
 	}
-	&.sticky-bottom {
-		//bottom: 0;
 
+	&.sticky-very-bottom {
+		
 		> .inner {
 			position: absolute;
 			bottom: 0;			

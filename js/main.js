@@ -116,50 +116,54 @@
 
 				if( !element.length ) return;
 
-				this.container = container = element.parent();
-				this.inner = inner = $('> .inner', element);
+				this.container = element.parent();
+				this.inner = $('> .inner', element);
 				
-				main.w.on('load', main.sidebar.loaded);
+				this.waypoints();
+				main.w.on('load resize', main.sidebar.waypoints);
 
-					// content.waypoint(function(direction){
-					// 	if (direction === 'down') {
-					// 		element.removeClass('sticky');
-					//       	element.addClass('sticky-bottom');
-					//     }
-					//     else {
-					//       	element.removeClass('sticky-bottom');
-					//       	element.addClass('sticky');
-					//     }
-					// },{
-					// 	offset: 'bottom-in-view'
-					// });
-
-					//} else {
-					//	content.css('height',innerHeight + 'px');
-					//}
-				//});
 			},
-			loaded: function(){
+			waypoints: function(){
 
 				var element = main.sidebar.element,
 					container = main.sidebar.container,
-					inner = main.sidebar.inner;
+					inner = main.sidebar.inner,
+					containerHeight = container.height(),
+					innerHeight = inner.height(),
+					innerOffset = inner.offset(),
+					windowHeight = main.w.height();
 
 					//console.log(inner.height(), container.height())
 
-				if( inner.height() >= container.height() - 200) return;
+				if( containerHeight - innerHeight > 0) {
+					if(innerOffset.top + innerHeight > windowHeight) {
+						inner.waypoint(function(direction){
+							element.toggleClass('sticky-bottom', direction === 'down');
+						},{
+							offset: 'bottom-in-view'
+						});
 
-				inner.waypoint(function(direction){
-					element.toggleClass('sticky', direction === 'down');
-				},{
-					offset: 'bottom-in-view'
-				});
+						container.waypoint( function(direction) {
+							element.toggleClass('sticky-very-bottom', direction === 'down');
+						}, {
+							offset: 'bottom-in-view'
+						});
+					} else {
+						inner.waypoint(function(direction){
+							element.toggleClass('sticky-top', direction === 'down');
+						});
 
-				container.waypoint( function(direction) {
-					element.toggleClass('sticky-bottom', direction === 'down');
-				}, {
-					offset: 'bottom-in-view'
-				});
+						container.waypoint( function(direction) {
+							element.toggleClass('sticky-very-bottom', direction === 'down');
+						}, {
+							offset: innerHeight
+						});
+					}
+					
+				} else {
+					inner.waypoint('destroy');
+					container.waypoint('destroy');
+				}
 			}
 		},
 

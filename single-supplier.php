@@ -40,21 +40,21 @@
 						<div class="phone-number"><b>T:</b><?php echo $phone_number; ?></div>
 						<?php endif; ?>
 						<?php if( $email_address = get_field('email_address') ) : ?>
-						<a class="email-address" href="mailto:<?php echo $email_address; ?>"><b>E:</b><?php echo $email_address; ?></a>
+						<div class="email-address"><b>E:</b><a href="mailto:<?php echo $email_address; ?>"> <?php echo $email_address; ?></a></div>
 						<?php endif; ?>
 						<?php if( $website_url = get_field('website_url') ) : ?>
-						<a class="website" href="<?php echo $website_url; ?>"><?php echo $website_url; ?></a>
+						<div class="website" ><a href="<?php echo $website_url; ?>" target="_blank"> <?php echo preg_replace('#^https?://#', '', $website_url); ?></a></div>
 						<?php endif; ?>
 					</div>
 					<div class="supplier-share">
 						<?php if( $facebook_url = get_field('facebook_url') ) : ?>
-						<a class="facebook-btn" href="<?php echo $facebook_url; ?>"><?php _e("Find us on Facebook", 'businesscarmanager') ;?></a>
+						<div class="facebook" ><a href="<?php echo $facebook_url; ?>" target="_blank"><i class="icon-facebook"></i><?php _e("Find us on Facebook", 'businesscarmanager');?></a></div>
 						<?php endif; ?>
 						<?php if( $linkedin_url = get_field('linkedin_url') ) : ?>
-						<a class="linkedin-btn" href="<?php echo $linkedin_url; ?>"><?php _e("Find us on LinkedIn", 'businesscarmanager') ;?></a>
+						<div class="linkedin" ><a href="<?php echo $linkedin_url; ?>" target="_blank"><i class="icon-linkedin"></i><?php _e("Find us on LinkedIn", 'businesscarmanager');?></a></div>
 						<?php endif; ?>
 						<?php if( $twitter_url = get_field('twitter_url') ) : ?>
-						<a class="twitter-btn" href="<?php echo $twitter_url; ?>"><?php _e("Follow us on Twitter", 'businesscarmanager') ;?></a>
+						<div class="twitter" ><a href="<?php echo $twitter_url; ?>" target="_blank"><i class="icon-twitter"></i><?php _e("Follow us on Twitter", 'businesscarmanager');?></a></div>
 						<?php endif; ?>
 					</div>
 				</div>

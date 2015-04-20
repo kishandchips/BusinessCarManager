@@ -6,12 +6,21 @@
 	)); ?>
 	<?php if( have_posts() ) : ?>
 	<div class="container">
+		<nav class="supplier-categories-navigation navigation">
+			<ul class="menu">
+				<?php 
+				$class = array(); 
+				$class[] = ( !is_tax('supplier_category') ) ? 'current' : ''
+				?>
+				<li class="<?php echo implode( ' ', $class); ?>">
+					<a href="<?php echo get_permalink($page_id); ?>"><?php _e("Show all", 'businesscarmanager'); ?></a>
+				</li>
+				<?php echo wp_list_categories(array('taxonomy' => 'supplier_category', 'title_li' => false)); ?>
+			</ul>
+		</nav>
+
 		<div class="suppliers">
 			
-			<div class="categories">
-				<?php echo wp_list_categories(array('taxonomy' => 'supplier_category')); ?>
-			</div>
-
 			<?php $i = 0; ?>
 			<?php while( have_posts() ) : the_post(); ?>
 			
@@ -19,7 +28,7 @@
 				<?php include_module('supplier-item', array(
 					'title' => get_the_title(),
 					'url' => get_permalink(),
-					'image_url' => get_image(get_post_thumbnail_id(), array(450, 300))
+					'image_url' => get_image(get_post_thumbnail_id(), array(240))
 				)); ?>
 			</div>
 			<?php $i++; ?>

@@ -52,7 +52,15 @@
 					</div>
 					<div class="post-author">
 						<span class="label"><?php _e("Article By", 'businesscarmanager'); ?></span>
-						<span class="author value"><?php the_author() ?></span>
+						<span class="author value">
+							<?php 
+							if( $author = get_field('author') ) :
+								echo $author;
+							else:
+								the_author();
+							endif;
+							?>
+					</span>
 					</div>
 					<div class="post-share">
 						<?php include_module('share-links', array(
@@ -64,7 +72,7 @@
 				</div>
 				<div class="post-content">
 
-					<?php if( ( get_post_meta( $post->ID, '_field_select__1', true) == 'yes' ) && !is_user_logged_in() ) : ?>
+					<?php if( ( get_post_meta( $post->ID, '_field_select__1', true) == 'yes' || get_field('restricted') ) && !is_user_logged_in() ) : ?>
 						<?php $content_arr = get_extended($post->post_content); ?>
 
 						<?php if($post->post_content!= $content_arr['main']) : ?>
@@ -73,7 +81,7 @@
 							<?php the_excerpt(); ?>
 						<?php endif; ?>
 						<div class="message">
-							<p>The rest of this content is restricted to logged-in users. Please <a id="login_direct" href="javascript:;">login</a> to continue reading. Can't log in to read the content? Don't panic! Our guys Will and Dario will sort you out. Email <a href="mailto:SFLFadmin@businesscarmanager.co.uk">SFLFadmin@businesscarmanager.co.uk</a>.</p>
+							<p>The rest of this content is restricted to logged-in users. Please <a clas="login-btn">login</a> to continue reading. Can't log in to read the content? Don't panic! Our guys Will and Dario will sort you out. Email <a href="mailto:SFLFadmin@businesscarmanager.co.uk">SFLFadmin@businesscarmanager.co.uk</a>.</p>
 						</div>
 					<?php else: ?>
 					<?php the_content(); ?>
