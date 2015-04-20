@@ -1,14 +1,17 @@
 <?php get_header(); ?>
 <?php 
 $category_id = get_query_var('cat');
-$color = get_category_color($category_id);
-
+$primary_category = get_category_primary_category($category_id);
+$color = get_category_color($primary_category->term_id);
+$sidebar = ( !empty($primary_category) ) ? 'category_header_'.$primary_category->term_id : '';
+$label = ( !empty($primary_category) && $category_id != $primary_category->term_id ) ? $primary_category->name : '';
 ?>
 <section id="category">
 	<?php include_module('page-header', array(
 		'color' => $color,
+		'label' => $label,
 		'title' => single_cat_title('', false),
-		'sidebar' => 'category_header_'.$category_id
+		'sidebar' => $sidebar
 	)); ?>
 
 	<div class="sidebar-container container">

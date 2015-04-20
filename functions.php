@@ -497,6 +497,24 @@ function get_post_primary_category( $id = '') {
 	return $primary_category;
 }
 
+function get_category_primary_category( $id ) {
+	$id = ( $id ) ? $id : get_query_var('cat');
+
+	$primary_category = get_top_level_category( $id );
+	// $primary_categories = get_field('primary_categories', 'options');
+	// $primary_category = array();
+
+	// if( $primary_categories ) {
+	// 	foreach( $primary_categories as $category ) {
+	// 		if( in_category() ) {
+	// 			$category = 
+	// 			continue;
+	// 		}
+	// 	}	
+	// }
+	return $primary_category;
+}
+
 function get_category_color( $category_id ) {
 
 	$category = get_top_level_category( $category_id );
