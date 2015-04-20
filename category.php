@@ -4,7 +4,7 @@
 	<?php include_module('page-header', array(
 		'color' => $color,
 		'title' => single_cat_title('', false),
-		'dropdown' => false
+		'dropdown' => true
 	)); ?>
 
 	<div class="sidebar-container container">

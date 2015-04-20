@@ -217,6 +217,7 @@ function custom_widgets_init() {
 		'after_widget' => '</aside>',
 		'before_title' => '<h5 class="widget-title">',
 		'after_title' => '</h5>',	
+		'limit' => 1
 	) );
 
 	register_sidebar( array(
@@ -235,6 +236,7 @@ function custom_widgets_init() {
 		'after_widget' => '</aside>',
 		'before_title' => '<h6 class="widget-title">',
 		'after_title' => '</h6>',
+		'limit' => 1
 	) );
 
 	register_sidebar( array(
