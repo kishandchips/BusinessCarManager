@@ -219,6 +219,7 @@ function custom_widgets_init() {
 		'after_widget' => '</aside>',
 		'before_title' => '<h5 class="widget-title">',
 		'after_title' => '</h5>',	
+		'limit' => 1
 	) );
 
 	register_sidebar( array(
@@ -370,7 +371,7 @@ function custom_pre_get_posts($query) {
 
 	$post_type_pages = array();
 	if( $hubs_page = get_field('hubs_page', 'options')) $post_type_pages[$hubs_page] = 'hub';
-	if( $suppliers_page = get_field('suppliers_page', 'options')) $post_type_pages[$suppliers_page] = 'supplier';
+	if( $suppliers_page = get_field('suppliers_page', 'options'))$post_type_pages[$suppliers_page] = 'supplier';
 
 	if ( $GLOBALS['wp_rewrite']->use_verbose_page_rules && isset( $query->queried_object_id ) ) {
 		if( array_key_exists( $query->queried_object_id, $post_type_pages) ) {
@@ -384,10 +385,6 @@ function custom_pre_get_posts($query) {
 			$query->is_page              = false;
 		}
 	}
-
-	// $q->is_tax( get_object_taxonomies( 'product' ) ) {
-
-	// }
 
     if( isset($_GET['view']) ){
     	switch($_GET['view']) {
@@ -570,14 +567,14 @@ function custom_widget($atts){
 
 	extract(shortcode_atts(array(
         'id'    => '0',
-        ''
+        'position' => 'left'
     ), $atts));
 
     $class = array('widget %2$s');
-    $class[] = ( !empty($postion)) ? $positon : '';
+    $class[] = ( !empty($position) ) ? $position : '';
 
     ob_start();
-    widget_instance($id, array('<aside id="%1$s" class="'.implode(' ', $class).'">'));
+    widget_instance($id, array('before_widget' => '<aside id="%1$s" class="'.implode(' ', $class).'">'));
     return ob_get_clean();
 }
 

@@ -3,7 +3,6 @@
 $category_id = get_query_var('cat');
 $color = get_category_color($category_id);
 
-die('category_header_'.$category_id);
 ?>
 <section id="category">
 	<?php include_module('page-header', array(

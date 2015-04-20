@@ -585,6 +585,14 @@
 			padding-right: 0;
 		}
 	}
+
+	.post-content {
+		.gform_wrapper {
+			@include device-width(6) {
+				padding: 1em; 
+			}
+		}
+	}
 }
 
 #archive-hub {

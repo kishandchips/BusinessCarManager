@@ -119,7 +119,6 @@
 				this.container = element.parent();
 				this.inner = $('> .inner', element);
 				
-				this.waypoints();
 				main.w.on('load resize', main.sidebar.waypoints);
 
 			},
@@ -136,6 +135,7 @@
 					//console.log(inner.height(), container.height())
 
 				if( containerHeight - innerHeight > 0) {
+					//console.log(innerOffset.top + innerHeight, windowHeight);
 					if(innerOffset.top + innerHeight > windowHeight) {
 						inner.waypoint(function(direction){
 							element.toggleClass('sticky-bottom', direction === 'down');
@@ -149,20 +149,21 @@
 							offset: 'bottom-in-view'
 						});
 					} else {
-						inner.waypoint(function(direction){
+
+						element.waypoint(function(direction){
+							console.log('sticky-top');
 							element.toggleClass('sticky-top', direction === 'down');
 						});
 
+						//console.log(container.offset().top + containerHeight - innerHeight, main.w.scrollTop() );
 						container.waypoint( function(direction) {
+							console.log('sticky-very-bottom');
 							element.toggleClass('sticky-very-bottom', direction === 'down');
 						}, {
-							offset: innerHeight
+							offset: -containerHeight + innerHeight
 						});
 					}
 					
-				} else {
-					inner.waypoint('destroy');
-					container.waypoint('destroy');
 				}
 			}
 		},
