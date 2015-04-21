@@ -281,4 +281,12 @@ fieldset {
 }
 
 
-
+#loginform {
+	.login-username,
+	.login-password {
+		label {
+			width: 100px;
+			display: inline-block;
+		}
+	}
+}

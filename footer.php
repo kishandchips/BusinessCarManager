@@ -11,7 +11,7 @@ global $woocommerce;
 ?>
 	</div><!-- #main .site-main -->
 	
-	<footer id="footer" class="site-footer" role="contentinfo">
+	<footer id="footer" class="footer" role="contentinfo">
 		<div class="container inner">
 			<?php wp_nav_menu( array( 'theme_location' => 'secondary', 'menu_class' => 'clearfix menu', 'container' => 'nav', 'container_class' => 'secondary-navigation navigation', 'depth' => 2 )); ?>
 			<div class="copyright">&copy; <b><?php bloginfo('name'); ?></b> <?php echo date("Y"); ?>. All Rights Reserved.</div>
@@ -19,6 +19,13 @@ global $woocommerce;
 			<span class="by">Site By <a href="http://www.kishandchips.com" title="Kish and Chips" target="_blank"><i class="icon-kishandchips"></i> <b>Kish &amp; Chips</b></a></span>
 		</div>
 	</footer><!-- #footer .site-footer -->
+
+	<div id="lightbox" class="lightbox">
+		<div class="lightbox-content content"></div>
+		<div class="lightbox-overlay overlay"></div>
+		<div class="lightbox-preloader preloader"></div>
+		<button class="close-btn"></button>
+	</div>
 </div><!-- #wrap -->
 
 <script type="text/javascript">

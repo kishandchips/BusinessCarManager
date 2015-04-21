@@ -15,6 +15,8 @@
 			)
 		)
 	));
+
+	$restricted = ( get_post_meta( $post->ID, '_field_select__1', true) == 'yes' || get_field('restricted') ) && !is_user_logged_in();
 ?>
 <section id="single">
 	<?php include_module('page-header', array(
@@ -60,7 +62,7 @@
 								the_author();
 							endif;
 							?>
-					</span>
+						</span>
 					</div>
 					<div class="post-share">
 						<?php include_module('share-links', array(
@@ -72,16 +74,16 @@
 				</div>
 				<div class="post-content">
 
-					<?php if( ( get_post_meta( $post->ID, '_field_select__1', true) == 'yes' || get_field('restricted') ) && !is_user_logged_in() ) : ?>
-						<?php $content_arr = get_extended($post->post_content); ?>
+					<?php if( $restricted ) : ?>
+						<?php $content_array = get_extended($post->post_content); ?>
 
-						<?php if($post->post_content!= $content_arr['main']) : ?>
-							<?php echo apply_filters('the_content', $content_arr['main']); ?>
+						<?php if($post->post_content!= $content_array['main']) : ?>
+							<?php echo apply_filters('the_content', $content_array['main']); ?>
 						<?php else: ?>
 							<?php the_excerpt(); ?>
 						<?php endif; ?>
 						<div class="message">
-							<p>The rest of this content is restricted to logged-in users. Please <a clas="login-btn">login</a> to continue reading. Can't log in to read the content? Don't panic! Our guys Will and Dario will sort you out. Email <a href="mailto:SFLFadmin@businesscarmanager.co.uk">SFLFadmin@businesscarmanager.co.uk</a>.</p>
+							<p>The rest of this content is restricted to logged-in users. Please <a class="login-btn tertiary-btn" href="<?php echo site_url('login'); ?>">login</a> to continue reading. Can't log in to read the content? Don't panic! Our guys Will and Dario will sort you out. Email <a href="mailto:SFLFadmin@businesscarmanager.co.uk">SFLFadmin@businesscarmanager.co.uk</a>.</p>
 						</div>
 					<?php else: ?>
 
@@ -95,12 +97,14 @@
 				</div>
 
 				<div class="post-misc">
+					<?php if( !$restricted ) : ?>
 					<?php wp_link_pages( array(
 						'before' => '<div class="post-pagination"><span class="label">' . __( 'Continue Reading:' ) . '</span>',
 						'after' => '</div>',
 						'link_before' => '<span class="page-number">',
 						'link_after'  => '</span>',
 					)); ?> 
+					<?php endif; ?>
 					
 					<?php include_module('share-links', array(
 						'title' => get_the_title(),
@@ -108,10 +112,11 @@
 						'excerpt' => get_the_excerpt()
 					)); ?>
 				</div>
-
+				<?php if( !$restricted ) : ?>
 				<div class="post-comments">
 					<?php comments_template(); ?>
 				</div>
+				<?php endif; ?>
 				
 				<?php if( has_tag() ) : ?>
 				<div class="post-tags">
