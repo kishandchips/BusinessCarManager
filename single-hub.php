@@ -3,17 +3,25 @@
 $primary_categories = get_field('primary_categories', 'options'); 
 $post_tag = get_field('post_tag');
 $categories = get_field('categories'); 
+$primary_link_category = get_field('primary_link_category');
+$logo_url = get_image( get_field('logo'), array(180, 180));
 ?>
-<section id="single-hub">
+<section id="single-hub" >
 	
 	<div class="sidebar-container container">
 		<div class="sidebar-content">
-			<div class="single-hub">
+			<?php 
+			$class = array('single-hub');
+			$class[] = ($logo_url) ? 'has-logo' : '';
+			?>
+			<div class="<?php echo implode( ' ', $class); ?>">
 				<figure class="hub-image thumbnail" >
-						<?php the_post_thumbnail(array(1000, 320)); ?>						
+					<?php the_post_thumbnail(array(1000, 320)); ?>						
 				</figure>
 				<header class="hub-header header">
-					<div class="logo"><img src="<?php echo get_image( get_field('logo'), array(180, 180)); ?>" /></div>
+					<?php if( $logo_url ): ?>
+					<div class="logo"><img src="<?php echo $logo_url; ?>" /></div>
+					<?php endif; ?>
 					<h4 class="title"><?php the_title(); ?></h4>
 				</header>
 				<?php $query = new WP_Query(array('tag__in' => get_field('post_tag'), 'posts_per_page' => 5)) ?>
@@ -103,7 +111,7 @@ $categories = get_field('categories');
 	<div id="links" class="related-hub-links">
 		<div class="inner container">
 			<?php include_module('links', array(
-				'category' => get_field('primary_link_category')
+				'category' => $primary_link_category
 			)); ?>
 		</div>
 	</div>

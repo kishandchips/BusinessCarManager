@@ -141,9 +141,11 @@
 				var element = main.sidebar.element,
 					container = main.sidebar.container,
 					inner = main.sidebar.inner,
+					header = main.header.element,
 					containerHeight = container.height(),
 					innerHeight = inner.height(),
 					innerOffset = inner.offset(),
+					headerHeight = header.height() + parseInt(header.css('top')),
 					windowHeight = main.w.height();
 
 					//console.log(inner.height(), container.height())
@@ -164,14 +166,16 @@
 						});
 					} else {
 
-						element.waypoint(function(direction){
+						container.waypoint(function(direction){
 							element.toggleClass('sticky-top', direction === 'down');
+						}, {
+							offset: headerHeight
 						});
 
 						container.waypoint( function(direction) {
 							element.toggleClass('sticky-very-bottom', direction === 'down');
 						}, {
-							offset: -containerHeight + innerHeight
+							offset: -containerHeight + innerHeight + headerHeight
 						});
 					}
 					
@@ -224,16 +228,36 @@
 		            protocol: 'http',
 		            server: 'adserver.adtech.de',
 		            network: '1331',
+		            responsiveCheckTimeout: 150
 		        };
 
 				element.each(function(){
-					var placementid = $(this).data('placement-id');
+					var advert = $(this),
+						placementid = advert.data('placement-id'),
+						placementoptions = advert.data('placement-options');
+
 					if( placementid ) {
 						ADTECH.config.placements[placementid] = { 
 							params: {
 								target: '_blank' 
+							},
+							responsive: {
+								useresponsive: true, 
+								bounds: [
+									{
+										id: 5661899, 
+										min: 0,
+										max: 749
+									},
+									{
+									   id: placementid,
+				                        min: 750,
+				                        max: 9999
+				                    }
+								]
 							}
 						};
+
 						ADTECH.enqueueAd(placementid);
 					}
 				});

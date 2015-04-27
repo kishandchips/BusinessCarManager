@@ -132,9 +132,11 @@
 
 	.menu {
 		.menu-item {
+			margin: 0.5em 0;
 			a {
 				@include font-size(30);
 				@include interface;
+				line-height: 1;
 			}
 		}
 	}

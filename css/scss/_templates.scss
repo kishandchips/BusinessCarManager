@@ -1,9 +1,5 @@
 #front-page {
-	.sidebar-container {
-		margin-top: 3em;
-		margin-bottom: 5em;
-	}
-
+	
 	.sidebar-content {
 		padding-right: 3em;
 
@@ -122,11 +118,6 @@
 	}
 }
 #category {
-
-	.sidebar-container {
-		margin-top: 3em;
-		margin-bottom: 3em;
-	}
 
 	.sidebar-content {
 		padding-right: 3em;
@@ -289,11 +280,6 @@
 
 #index {
 
-	.sidebar-container {
-		margin-top: 3em;
-		margin-bottom: 3em;
-	}
-
 	.sidebar-content {
 		padding-right: 3em;
 
@@ -361,11 +347,6 @@
 		}
 	}
 
-	.sidebar-container {
-		margin-top: 2em;
-		margin-bottom: 5em;
-	}
-
 	.sidebar-content {
 		padding-right: 3em;
 
@@ -379,6 +360,15 @@
 
 		@include device-width(10) {
 			padding-right: 0;
+		}
+	}
+
+	.post-comments {
+		padding-left: 220px;
+		position: relative;
+
+		@include device-width(10) {
+			padding-left: 0;
 		}
 	}
 
@@ -565,11 +555,6 @@
 
 #page {
 	
-	.sidebar-container {
-		margin-top: 2em;
-		margin-bottom: 5em;
-	}
-
 	.sidebar-content {
 		padding-right: 3em;
 
@@ -622,10 +607,17 @@
 
 			.hub-item {
 				.header {
-					padding-left: 80px;
+					&.has-logo {
+						@include device-width(6) {
+							padding-left: 80px;
+						}
+					}
 				}
+
 				.logo {
-					width: 50px;
+					@include device-width(6) {
+						width: 50px;
+					}
 				}
 			}
 		}
@@ -634,16 +626,10 @@
 
 #single-hub {
 
-	.sidebar-container {
-		margin-bottom: 5em;
-	}
-
-	.sidebar {
-		padding-top: 3em;
-	}
-
+	
 	.sidebar-content {
 		padding-right: 3em;
+		padding-top: 0;
 
 		@include device-width(14) {
 			padding-right: 2em;
@@ -661,6 +647,12 @@
 
 	.single-hub {
 
+		&.has-logo {
+			.hub-header {
+				padding-left: 210px;
+			}
+		}
+
 		.hub-image {
 			img {
 				display: block;
@@ -668,7 +660,7 @@
 			}
 		}
 		.hub-header {
-			padding: 1em 1em 1em 210px;
+			padding: 1em;
 			position: relative;
 			background: #f6f6f6;
 
@@ -848,11 +840,6 @@
 			padding: 0.5em 0;
 			border-bottom: #999 1px solid;
 		}
-	}
-
-	.sidebar-container {
-		margin-top: 2em;
-		margin-bottom: 5em;
 	}
 
 	.sidebar-content {

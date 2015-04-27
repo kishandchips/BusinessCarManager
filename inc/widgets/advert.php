@@ -34,7 +34,10 @@ class Advert_Widget extends WP_Widget {
 		echo $args['before_widget'];
 			
 			include_module('advert', array(
-				'placement_id' => $placement_id
+				'placement_id' => $placement_id,
+				'placement_options' => array(
+					
+				)
 			));
 
 		echo $args['after_widget'];

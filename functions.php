@@ -32,6 +32,8 @@ add_action( 'wp_print_styles', 'custom_styles', 30);
 
 add_action( 'in_widget_form', 'custom_in_widget_form', 10, 3 );
 
+add_action( 'ajax_content', 'custom_ajax_content' );
+
 // Custom Filters
 
 add_filter( 'comment_form_defaults', 'custom_comment_form_defaults');
@@ -56,7 +58,7 @@ add_filter('sidebars_widgets', 'custom_sidebars_widgets', 20);
 
 add_filter( 'pre_option_link_manager_enabled', '__return_true' );
 
-add_action( 'ajax_content', 'custom_ajax_content' );
+add_filter( 'widget_links_args', 'custom_widget_links_args');
 
 remove_filter( 'nav_menu_description', 'strip_tags' );
 
@@ -79,6 +81,8 @@ add_shortcode('dropdown_menu', 'custom_dropdown_menu');
 add_shortcode('widget', 'custom_widget');
 
 add_shortcode('login_form', 'custom_login_form');
+
+add_shortcode('not_logged_in', 'custom_not_logged_in' );
 
 if( $shortcodes = get_field('shortcodes', 'options') ) {
 	foreach( $shortcodes as $shortcode ) {
@@ -139,16 +143,18 @@ function custom_init(){
 				'has_archive'         => $hubs_uri,
 				'show_in_nav_menus'   => true,
 				'plural'			  => 'Hubs',
-				'singluar'			  => 'Hub'
+				'singluar'			  => 'Hub',
+				'taxonomies' 		  => array('hub_category')
 	   		)
 	   	);
 
-	   	$hub->register_post_type();
+		$hub->register_post_type();
 
 	   	$hub->register_taxonomy('hub_category', 
 	   		array('hierarchical' => true, 'rewrite' => array( 'slug' => 'hub-category')), 
 	   		array('plural' => __("Categories", 'businesscarmanager'), 'singular_name' => __("Category", 'businesscarmanager'))
 	   	);
+
 	}
 
 	if( $suppliers_page = get_field('suppliers_page', 'options') ) {
@@ -169,11 +175,11 @@ function custom_init(){
 				'show_in_nav_menus'   => true,
 				'plural'			  => 'Suppliers',
 				'singluar'			  => 'Supplier',
-			//	'taxonomies' 		  => array('post_tag')
+				'taxonomies' 		  => array('supplier_category')
 	   		)
 	   	);
 
-	   	$supplier->register_post_type();
+		$supplier->register_post_type();
 
 	   	$supplier->register_taxonomy('supplier_category', 
 	   		array('hierarchical' => true, 'rewrite' => array( 'slug' => 'supplier-category')), 
@@ -374,8 +380,8 @@ function custom_pre_get_posts($query) {
 	}
 
 	$post_type_pages = array();
-	if( $hubs_page = get_field('hubs_page', 'options')) $post_type_pages[$hubs_page] = 'hub';
-	if( $suppliers_page = get_field('suppliers_page', 'options'))$post_type_pages[$suppliers_page] = 'supplier';
+	if( $hubs_page = get_field('hubs_page', 'options') ) $post_type_pages[$hubs_page] = 'hub';
+	if( $suppliers_page = get_field('suppliers_page', 'options') ) $post_type_pages[$suppliers_page] = 'supplier';
 
 	if ( $GLOBALS['wp_rewrite']->use_verbose_page_rules && isset( $query->queried_object_id ) ) {
 		if( array_key_exists( $query->queried_object_id, $post_type_pages) ) {
@@ -388,6 +394,14 @@ function custom_pre_get_posts($query) {
 			$query->is_singular          = false;
 			$query->is_page              = false;
 		}
+	}
+
+	if( is_tax('hub_category') ) {
+		$query->set( 'post_type', 'hub' );
+	}
+
+	if( is_tax('supplier_category') ) {
+		$query->set( 'post_type', 'supplier' );
 	}
 
     if( isset($_GET['view']) ){
@@ -413,22 +427,12 @@ function custom_tax_links() {
 }
 
 function custom_the_content($content) {
-	// global $shortcode_tags;
+	global $post;
 
-	// $active_shortcodes = ( is_array($shortcode_tags) && !empty($shortcode_tags) ) ? array_keys($shortcode_tags) : array();
+	$thumbnail_id = get_post_thumbnail_id( $post->ID );
 	
-	// $hack = md5(microtime());
-	// $content = str_replace("/",$hack, $content);
+	$content = preg_replace('/\[caption id="attachment_' . $thumbnail_id . '" .+?\[\/caption\]/i', '', $content, 1);
 	
-	// if(!empty($active_shortcodes)){
-	// 	$keep_active = implode("|", $active_shortcodes);
-	// 	$content= preg_replace( "~(?:\[/?)(?!(?:$keep_active))[^/\]]+/?\]~s", '', $content );
-	// } else {
-	// 	$content = preg_replace("~(?:\[/?)[^/\]]+/?\]~s", '', $content);			
-	// }
-	
-	// $content = str_replace($hack,"/",$content);
-
   	return $content;
 }
 
@@ -643,4 +647,18 @@ function custom_login_form() {
 function custom_ajax_content() {
 	global $post;
 	echo '<div class="post-content">'. apply_filters( 'the_content', $post->post_content ) . '</div>';
+}
+
+function custom_widget_links_args($args) {
+	// if( $category = get_field('secondary_category') ) {
+	// 	$args['category'] = $category;
+	// }
+	return $args;
+} 
+
+function custom_not_logged_in($params, $content = null){
+
+	if ( !is_user_logged_in() ) return $content;
+
+	return; 
 }

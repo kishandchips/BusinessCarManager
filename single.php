@@ -68,7 +68,8 @@
 						<?php include_module('share-links', array(
 							'title' => get_the_title(),
 							'url' => get_permalink(),
-							'excerpt' => get_the_excerpt()
+							//'excerpt' => get_the_excerpt(),
+							'excerpt' => ''
 						)); ?>
 					</div>
 				</div>
@@ -112,11 +113,6 @@
 						'excerpt' => get_the_excerpt()
 					)); ?>
 				</div>
-				<?php if( !$restricted ) : ?>
-				<div class="post-comments">
-					<?php comments_template(); ?>
-				</div>
-				<?php endif; ?>
 				
 				<?php if( has_tag() ) : ?>
 				<div class="post-tags">
@@ -172,7 +168,7 @@
 							$category = get_category( $primary_category );
 							$related_posts = get_related_tag_posts_ids($post->ID, 3, $primary_category); 
 							$color = get_category_color( $category->term_id);
-							$query = new WP_Query( array('post__in' => $related_posts) );
+							$query = new WP_Query( array('post__in' => $related_posts, 'posts_per_page' => 3) );
 							$posts = array();
 
 							if( $query->have_posts() ) :
@@ -210,6 +206,14 @@
 				endif;
 				?>
 			</div>
+
+			<?php if( !$restricted ) : ?>
+			<div class="comments">
+				<div class="post-comments">
+					<?php comments_template(); ?>
+				</div>
+			</div>
+			<?php endif; ?>
 		</div>
 		<?php get_sidebar(); ?>
 	</div>

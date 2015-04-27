@@ -37,10 +37,10 @@
 					</div>
 					<div class="supplier-contact">
 						<?php if( $phone_number = get_field('phone_number') ) : ?>
-						<div class="phone-number"><b>T:</b><?php echo $phone_number; ?></div>
+						<div class="phone-number"><b>T:</b> <?php echo $phone_number; ?></div>
 						<?php endif; ?>
 						<?php if( $email_address = get_field('email_address') ) : ?>
-						<div class="email-address"><b>E:</b><a href="mailto:<?php echo $email_address; ?>"> <?php echo $email_address; ?></a></div>
+						<div class="email-address"><b>E:</b> <a href="mailto:<?php echo $email_address; ?>"> <?php echo $email_address; ?></a></div>
 						<?php endif; ?>
 						<?php if( $website_url = get_field('website_url') ) : ?>
 						<div class="website" ><a href="<?php echo $website_url; ?>" target="_blank"> <?php echo preg_replace('#^https?://#', '', $website_url); ?></a></div>

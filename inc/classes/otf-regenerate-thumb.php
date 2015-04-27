@@ -124,24 +124,43 @@ if ( ! function_exists( 'gambit_otf_regen_thumbs_media_downsize' ) ) {
 		} else if ( is_array( $size ) ) {
 			$imagePath = get_attached_file( $id );
 			
-			$width = ( ! empty($size['width']) ) ? $size['width'] : 0;
-			$height = ( ! empty($size['height']) ) ? $size['height'] : 0;
+			$width = ( ! empty($size['width']) ) ? $size['width'] : null;
+			$height = ( ! empty($size['height']) ) ? $size['height'] : null;
 
 			$width = ( ! empty($size[0]) && !$width ) ? $size[0] : $width;
 			$height = ( ! empty($size[1]) && !$height ) ? $size[1] : $height;
 
-			$crop = ( ! empty($width) && ! empty($height) );
+			$crop = ( $width && $height );
 
+			if( !$crop ) {
+
+				$imagedata = wp_get_attachment_metadata( $id );
+
+				foreach( $imagedata['sizes'] as $image_size ) {
+					if( $width && $image_size['width'] == $width ) {
+						$height = $image_size['height'];
+						continue;
+					}
+
+					if( $height && $image_size['height'] == $height ) {
+						$width = $image_size['width'];
+						continue;
+					}
+				}
+
+			}
+
+			$att_url = wp_get_attachment_url( $id );
+			
 			// This would be the path of our resized image if the dimensions existed
 			$imageExt = pathinfo( $imagePath, PATHINFO_EXTENSION );
 			$imagePath = preg_replace( '/^(.*)\.' . $imageExt . '$/', sprintf( '$1-%sx%s.%s', $width, $height, $imageExt ) , $imagePath );
 
-			$att_url = wp_get_attachment_url( $id );
-			
 			// If it already exists, serve it
 			if ( file_exists( $imagePath ) ) {
 				return array( dirname( $att_url ) . '/' . basename( $imagePath ), $width, $height, true );
 			}
+			
 			// If not, resize the image...
 			$resized = image_make_intermediate_size(
 				get_attached_file( $id ),
@@ -156,12 +175,12 @@ if ( ! function_exists( 'gambit_otf_regen_thumbs_media_downsize' ) ) {
 			// Save the new size in WP so that it can also perform actions on it
 			$imagedata['sizes'][ $resized['width']. 'x' . $resized['height'] ] = $resized;		   
 			wp_update_attachment_metadata( $id, $imagedata );
-				
+
 			// Resize somehow failed
 			if ( ! $resized ) {
-				return false;
+				return array( $att_url, $width, $height, false );
 			}
-		
+			
 			// Then serve it
 			return array( dirname( $att_url ) . '/' . $resized['file'], $resized['width'], $resized['height'], true );
 		}

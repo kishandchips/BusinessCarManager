@@ -1,5 +1,6 @@
 <?php 
 $class = array('hub-item');
+$class[] = ( !empty($logo_url) ) ? 'has-logo' : '';
 ?>
 <div class="<?php echo implode(' ', $class); ?>">
 	<a href="<?php echo $url; ?>" class="btn" >
@@ -10,9 +11,11 @@ $class = array('hub-item');
 		<?php endif; ?>
 		<header class="header">
 			<h5 class="hub-title title"><?php echo $title; ?></h5>				
+			<?php if( !empty($logo_url) ): ?>
 			<div class="logo">
 				<img src="<?php echo $logo_url; ?>" />
 			</div>
+			<?php endif; ?>
 		</header>
 	</a>
 </div>

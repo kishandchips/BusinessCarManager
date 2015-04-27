@@ -6,7 +6,7 @@
 	)); ?>
 	<?php if( have_posts() ) : ?>
 	<div class="container">
-		<nav class="supplier-categories-navigation navigation">
+		<!--nav class="supplier-categories-navigation navigation">
 			<ul class="menu">
 				<?php 
 				$class = array(); 
@@ -17,7 +17,7 @@
 				</li>
 				<?php echo wp_list_categories(array('taxonomy' => 'supplier_category', 'title_li' => false)); ?>
 			</ul>
-		</nav>
+		</nav-->
 
 		<div class="suppliers">
 			

@@ -29,6 +29,23 @@ body {
 	height: 100%;
 	position: relative;
 	@include transition(all 0.3s ease);
+	
+	.header-sticky & {
+		padding-top: 179px;
+
+		@include device-width(12) {
+			padding-top: 172px;
+		}
+
+		@include device-width(10) {
+			padding-top: 160px;
+		}
+
+		@include device-width(7.5) {
+			padding-top: 130px;
+		}
+	}
+
 	.navigation-open & {
 		@include translateX(-260px);
 	}
@@ -40,6 +57,26 @@ body {
 	z-index: 400;
 	background: #383d62;
 	color: #FFF;
+
+	.header-sticky & {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+
+	}
+
+	.header-sticky.admin-bar & {
+		top: 32px;
+
+		@include device-width(7.82) {
+			top: 46px;
+		}
+
+		@include device-width(6) {
+			top: 0;
+		}
+	}
 
 	@include print() {
 		display: none;
@@ -103,7 +140,7 @@ body {
 				width: 150px;
 			}
 
-			@include device-width(10) {
+			@include device-width(12) {
 				display: none;
 			}
 		}
@@ -214,7 +251,7 @@ body {
 
 				.menu-item {
 					padding: 0;
-					margin: 0;
+					margin: 0.3em 0;
 					float: none;
 					border-right: 0;
 
@@ -383,7 +420,7 @@ body {
 		
 			.search-open & {
 				display: inline-block;
-				width: 180px;
+				width: 179px;
 			}
 		}
 
@@ -403,14 +440,28 @@ body {
 #main {
 	position: relative;
 	z-index: 100;
+
+	.sidebar-container {
+		margin-bottom: 3em;
+	}
+
+	.sidebar-content,
+	.sidebar {
+		padding-top: 3em;
+	}
 }
 
 #sidebar {
 	&.sticky-top {
 		> .inner {
 			position: fixed;
-			top: 0;
+			top: 179px;
+			margin-top: 3em;
 			bottom: auto;
+
+			.admin-bar & {
+				top: (179px + 32px);
+			}
 		}
 	}
 
@@ -425,9 +476,10 @@ body {
 	&.sticky-very-bottom {
 		
 		> .inner {
+			margin-top: 3em;
 			position: absolute;
 			bottom: 0;	
-			top: auto;		
+			top: auto !important;		
 		}
 	}
 }
@@ -494,7 +546,7 @@ body {
 		position: absolute;
 		top: 100%;
 		left: -2em;
-		right: -2em;
+		right: 350px;
 		opacity: 0;
 		visibility: hidden;
 		padding: 2em;

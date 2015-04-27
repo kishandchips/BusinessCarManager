@@ -1,7 +1,9 @@
 <?php 
+$max_title_length = 40;
 $class = array('post-item');
 $class[] = ( !empty($color) ) ? $color : '';
 $class[] = ( !empty($image_url) ) ? 'has-thumbnail' : 'no-thumbnail';
+//$title = ( strlen($title) > $max_title_length + 3 ) ? substr($title, 0, $max_title_length) . '...' : $title;
 ?>
 <div class="<?php echo implode(' ', $class); ?>">
 	<?php if( !empty($image_url)) : ?>
@@ -11,7 +13,7 @@ $class[] = ( !empty($image_url) ) ? 'has-thumbnail' : 'no-thumbnail';
 		</a>
 	</figure>
 	<?php endif; ?>
-	<header class="header <?php echo (strlen($title) > 30) ? 'title-long' : 'title-short'; ?>">
+	<header class="header <?php echo (strlen($title) > $max_title_length) ? 'title-long' : 'title-short'; ?>">
 		<?php if( !empty($category)) : ?>
 		<?php include_module('post-category', $category); ?>
 		<?php endif; ?>
