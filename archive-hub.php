@@ -1,8 +1,11 @@
 <?php get_header(); ?>
-<?php $page_id = get_field('hubs_page', 'options'); ?>
+<?php 
+$page_id = get_field('hubs_page', 'options'); 
+$title = ( is_tax('hub_category') ) ? single_cat_title('', false) : get_the_title($page_id);
+?>
 <section id="archive-hub">
 	<?php include_module('page-header', array(
-		'title' => get_the_title($page_id)
+		'title' => $title
 	)); ?>
 	<?php if( have_posts() ) : ?>
 	<div class="container">

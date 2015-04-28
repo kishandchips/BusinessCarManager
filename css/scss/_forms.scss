@@ -290,3 +290,16 @@ fieldset {
 		}
 	}
 }
+
+.taxCalcSelectForm {
+	@extend .clearfix;
+
+	.seldiv {
+		float: left;
+		margin-right: 1em;
+	}
+
+	#btn_go {
+		margin-top: 28px;
+	}
+}

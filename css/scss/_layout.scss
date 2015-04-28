@@ -362,16 +362,25 @@ body {
 
 		.dropdown {
 			left: 0;
-			right: 0;
+			right: 340px;
 			padding: 2em;
 			opacity: 0;
 			visibility: hidden;
 			@extend .clearfix;
 
-			@include device-width(8) {
-				display: none;
+			@include device-width(13) {
+				right: 0;
 			}
 
+			@include device-width(10) {
+				padding: 1em;
+			}
+
+			h2 {
+				@include device-width(10) {
+					display: none;
+				}
+			}
 			.dropdown-title {
 
 			}
@@ -381,6 +390,13 @@ body {
 				float: left;
 				width: 33.333%;
 				position: relative;
+
+				@include device-width(10) {
+					width: auto;
+					padding: 0 0 10px 0;
+					float: none;
+				}
+
 			}
 
 			.menu {
@@ -388,6 +404,11 @@ body {
 					a {
 						padding: 0.1em 0;
 						@include font-size(25);
+
+
+						@include device-width(10) {
+							@include font-size(15);
+						}
 
 						&:hover {
 							color: #ee4503;	
