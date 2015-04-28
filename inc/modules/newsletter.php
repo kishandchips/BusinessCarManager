@@ -5,7 +5,7 @@
 		</header>		
 		<div class="content">
 
-			<h4 class="description"><?php _e('Get the latest from Business Car Manager, all <b>free</b> and delivered to your inbox.', 'businesscarmanager'); ?></h4>
+			<h4 class="description"><?php echo sprintf( __('Get the latest from %s, all <b>free</b> and delivered to your inbox.', 'businesscarmanager'), get_bloginfo( 'name' ) ); ?></h4>
 
 			<ul class="tick-list key-points">
 				<li><?php _e("Company Car News", 'businesscarmanager'); ?></li>
