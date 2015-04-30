@@ -442,6 +442,16 @@
 		}
 	}
 
+	.wp-caption,
+	.caption {
+		.wp-caption-text {
+			@include device-width(6) {
+				position: relative;
+				margin: 0;
+			}
+		}
+	}
+
 	.post-content {
 		
 		padding: 0 0 1em 0;
@@ -452,20 +462,10 @@
 			vertical-align: top;
 		}
 
-		.wp-caption,
-		.caption {
-			.wp-caption-text {
-				@include device-width(6) {
-					position: relative;
-					margin: 0;
-				}
-			}
-		}
-
 		.widget,
 		.callout,
 		.leftBox,
-		.rightbox {
+		.rightBox {
 			@include device-width(5) {
 				width: auto;
 				float: none;

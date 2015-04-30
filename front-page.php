@@ -42,8 +42,8 @@ $template_directory_uri = get_template_directory_uri();
 				$color = get_category_color($primary_category);
 				$description = get_field('homepage_description', 'category_'.$category->term_id);
 
-				if( strlen($description) > 120 ) {
-					$description = substr($description, 0, 120).'...';
+				if( strlen($description) > 140 ) {
+					$description = substr($description, 0, 140).'...';
 				}
 				?>
 				<div class="category">

@@ -1,5 +1,5 @@
 <?php 
-$max_title_length = 40;
+$max_title_length = 60;
 $class = array('post-item');
 $class[] = ( !empty($color) ) ? $color : '';
 $class[] = ( !empty($image_url) ) ? 'has-thumbnail' : 'no-thumbnail';

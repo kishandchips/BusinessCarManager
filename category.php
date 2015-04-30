@@ -5,7 +5,9 @@ $primary_category = get_category_primary_category($category_id);
 $color = get_category_color($primary_category->term_id);
 $sidebar = ( !empty($primary_category) ) ? 'category_header_'.$primary_category->term_id : '';
 $label = ( !empty($primary_category) && $category_id != $primary_category->term_id ) ? $primary_category->name : '';
+$category_description = category_description();
 ?>
+
 <section id="category">
 	<?php include_module('page-header', array(
 		'color' => $color,
@@ -16,8 +18,7 @@ $label = ( !empty($primary_category) && $category_id != $primary_category->term_
 
 	<div class="sidebar-container container">
 		<div class="sidebar-content">
-			
-			<?php if( $category_description = category_description() ) : ?>
+			<?php if( $category_description && strpos( $category_description, '[' ) !== false ) : ?>
 			<div class="category-description">
 				<?php echo do_shortcode($category_description); ?>
 			</div>

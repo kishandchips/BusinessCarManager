@@ -293,7 +293,9 @@ fieldset {
 
 .taxCalcSelectForm {
 	@extend .clearfix;
-
+	padding: 1em;
+	background: #ececec;
+	 
 	.seldiv {
 		float: left;
 		margin-right: 1em;
