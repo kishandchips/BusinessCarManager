@@ -59,6 +59,8 @@
 					e.preventDefault();
 					window.location.href = $(this).val();
 				});
+
+				$('a[href^=http]:not([href*="' + window.location.host +'"])').attr('target', '_blank');
 			}
 		},
 
@@ -91,6 +93,12 @@
 					} else {
 						btn.text("More");
 					}
+				});
+
+				main.body.element.waypoint(function(direction){
+					main.body.element.toggleClass('header-sticky', direction === 'down');
+				}, {
+					offset: -element.height()
 				});
 
 				this.search.init();
@@ -168,14 +176,12 @@
 
 						container.waypoint(function(direction){
 							element.toggleClass('sticky-top', direction === 'down');
-						}, {
-							offset: headerHeight
 						});
 
 						container.waypoint( function(direction) {
 							element.toggleClass('sticky-very-bottom', direction === 'down');
 						}, {
-							offset: -containerHeight + innerHeight + headerHeight
+							offset: -containerHeight
 						});
 					}
 					
@@ -234,21 +240,22 @@
 				element.each(function(){
 					var advert = $(this),
 						placementid = advert.data('placement-id'),
-						placementoptions = advert.data('placement-options');
+						keywords = advert.data('keywords');
 
 					if( placementid ) {
 						ADTECH.config.placements[placementid] = { 
 							params: {
-								target: '_blank' 
+								target: '_blank',
+								key: keywords
 							},
 							responsive: {
 								useresponsive: true, 
 								bounds: [
-									{
-										id: 5661899, 
-										min: 0,
-										max: 749
-									},
+									// {
+									// 	id: 5661899, 
+									// 	min: 0,
+									// 	max: 749
+									// },
 									{
 									   id: placementid,
 				                        min: 750,

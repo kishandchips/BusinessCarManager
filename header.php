@@ -24,7 +24,7 @@
 
 	<?php wp_head(); ?>
 </head>
-<body <?php body_class('header-sticky'); ?>>
+<body <?php body_class(); ?>>
 <div id="tortilla">
 	<header id="header" role="banner">
 		<div class="container inner">

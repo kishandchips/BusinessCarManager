@@ -70,6 +70,14 @@
 	}
 }
 
+@include keyframes('from-top') {
+	from {
+		@include translateY(-100%);
+	}
+	to {
+		@include translateY(0);
+	}
+}
 // Flexbox Containers
 //
 // The 'flex' value causes an element to generate a block-level flex

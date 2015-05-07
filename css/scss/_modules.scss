@@ -9,14 +9,14 @@ blockquote {
 	&:before {
 		display: block;
 		text-align: center;
-		@include icon(quote-open);
+		@include icon(open-quote);
 		color: #e3e3e3;
 	}
 
 	&:after {
 		display: block;
 		text-align: center;
-		@include icon(quote-close);
+		@include icon(close-quote);
 		color: #e3e3e3;
 
 	}
@@ -351,11 +351,10 @@ table {
 	}
 
 	.callout {
-		border-top: 1px solid #383D62;
-		border-bottom: 1px solid #383D62;
 		width: 255px;
 		float: right;
 		margin: 1em 0 1em 2em;
+		@extend blockquote;
 	}
 
 	ul {
@@ -1268,6 +1267,35 @@ table {
 					background: #a4a4a4;
 				}
 			}
+		}
+	}
+}
+
+.primary-category-posts {
+	border-top: 2px solid #000;
+	
+	.title {
+		@include font-size(20);
+		@include interface-bold;
+		border-bottom: 1px solid #dddddd;
+		padding: 0 0 0.5em 0;
+		line-height: 1;
+	}
+}
+
+.posts-list {
+	li {
+		border-bottom: 1px solid #DDD;
+
+		&:last-child {
+			border-bottom: 0;
+		}
+
+		a {
+			display: block;
+			padding: 0.5em 0;
+			line-height: 1.2;
+			@include font-size(14);
 		}
 	}
 }

@@ -28,7 +28,7 @@ $category_description = category_description();
 				<?php $i = 0; ?>
 				<?php while( have_posts() ) : the_post(); ?>
 				<?php 
-				$image_url = ( $i < 7 ) ? get_image(get_post_thumbnail_id(), array(500, 500)) : null;
+				$image_url = ( $i < 7 ) ? get_image(get_post_thumbnail_id(), array(500, 400)) : null;
 				$category = get_post_sub_category();
 				?>
 				<div class="post">

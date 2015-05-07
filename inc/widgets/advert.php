@@ -9,6 +9,7 @@ class Advert_Widget extends WP_Widget {
 	function form( $instance ) {
 		$title = isset( $instance['title'] ) ? $instance['title'] : '';
 		$placement_id = (isset($instance['placement_id']))? esc_attr($instance['placement_id'] ) : '';
+		$keywords = (isset($instance['keywords']))? esc_attr($instance['keywords'] ) : '';
 	?>
 
 		<p>
@@ -18,6 +19,10 @@ class Advert_Widget extends WP_Widget {
 		<p>	
 			<label>Placement ID</label>
 			<input type="text" class="widefat" name="<?php echo $this->get_field_name('placement_id') ?>" value="<?php echo $placement_id; ?>">
+		</p>
+		<p>	
+			<label>Keyword(s)</label>
+			<input type="text" class="widefat" name="<?php echo $this->get_field_name('keywords') ?>" value="<?php echo $keywords; ?>">
 		</p>
 
 	<?php
@@ -30,14 +35,13 @@ class Advert_Widget extends WP_Widget {
 	function widget( $args, $instance ) {
 		
 		$placement_id = $instance['placement_id'];
+		$keywords = $instance['keywords'];
 
 		echo $args['before_widget'];
 			
 			include_module('advert', array(
 				'placement_id' => $placement_id,
-				'placement_options' => array(
-					
-				)
+				'keywords' => $keywords
 			));
 
 		echo $args['after_widget'];

@@ -1,1 +1,1 @@
-<div id="<?php echo $placement_id; ?>" class="advert" data-placement-options="<?php echo json_encode($placement_options); ?>" data-placement-id="<?php echo $placement_id; ?>"></div>
+<div id="<?php echo $placement_id; ?>" class="advert" data-keywords="<?php echo ( !empty($keywords) ) ? $keywords : ''; ?>" data-placement-id="<?php echo $placement_id; ?>"></div>

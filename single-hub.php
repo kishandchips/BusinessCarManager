@@ -23,6 +23,9 @@ $logo_url = get_image( get_field('logo'), array(180, 180));
 					<div class="logo"><img src="<?php echo $logo_url; ?>" /></div>
 					<?php endif; ?>
 					<h4 class="title"><?php the_title(); ?></h4>
+					<div class="excerpt">
+						<?php the_excerpt(); ?>
+					</div>
 				</header>
 				<?php $query = new WP_Query(array('tag__in' => get_field('post_tag'), 'posts_per_page' => 5)) ?>
 				<?php if( $query ->have_posts() ) : ?>

@@ -47,7 +47,7 @@
 
 	.primary-categories {
 		@extend .clearfix;
-		margin: 0 0 2em 0;
+		margin: 0 -10px 2em -10px;
 
 		.category {
 			width: 50%;
@@ -220,7 +220,7 @@
 			&:nth-child(4) {
 				width: 60%;
 
-				@include device-width(8) {
+				@include device-width(12) {
 					width: 100%;
 				}
 			}
@@ -229,7 +229,7 @@
 			&:nth-child(3) {
 				width: 40%;
 
-				@include device-width(8) {
+				@include device-width(12) {
 					width: 50%;
 				}
 
@@ -393,17 +393,21 @@
 			}
 		}
 
-		.post-info {
+		.post-sidebar {
 			width: 180px;
 			position: absolute;
 			left: 0;
-			@extend .clearfix;
-
+			
 			@include device-width(10) {
 				position: relative;
 				width: auto;
 				border-bottom: 1px solid #DDD;
 			}
+		}
+
+		.post-info {
+			@extend .clearfix;
+			margin: 0 0 2em 0;
 
 			.post-date,
 			.post-author {
@@ -440,6 +444,13 @@
 				}
 			}
 		}
+
+		.primary-category-posts  {
+			background: #efefef;
+			padding: 0.5em;
+		}
+
+
 	}
 
 	.wp-caption,

@@ -4,6 +4,7 @@
 	$sub_category = get_post_sub_category();
 	$color = ( !empty($category) ) ? get_category_color( $category->term_id ) : null;
 	$primary_categories = get_field('primary_categories', 'options');
+	$primary_posts = get_field('primary_posts', 'category_' . $category->term_id);
 	$tag_ids = wp_get_post_tags( get_the_ID(), array( 'fields' => 'ids' ) );
 	$hubs = get_posts(array(
 		'post_type' => 'hub', 
@@ -39,39 +40,54 @@
 					<?php endif; ?>
 				</figure>
 				<?php endif; ?>
-				<?php 
-				$class = array('post-info');
-				$class[] = $color;
-				?>
-				<div class="<?php echo implode(' ', $class); ?>">
-					<?php include_module('post-category', array(
-						'url' => get_term_link($sub_category),
-						'name' => $sub_category->name
-					)); ?>
-					<div class="post-date">
-						<span class="label"><?php _e("Posted", 'businesscarmanager'); ?></span>
-						<span class="date value"><?php the_date(); ?></span>
-					</div>
-					<div class="post-author">
-						<span class="label"><?php _e("Article By", 'businesscarmanager'); ?></span>
-						<span class="author value">
-							<?php 
-							if( $author = get_field('author') ) :
-								echo $author;
-							else:
-								the_author();
-							endif;
-							?>
-						</span>
-					</div>
-					<div class="post-share">
-						<?php include_module('share-links', array(
-							'title' => get_the_title(),
-							'url' => get_permalink(),
-							//'excerpt' => get_the_excerpt(),
-							'excerpt' => ''
+				<div class="post-sidebar">
+					<?php 
+					$class = array('post-info');
+					$class[] = $color;
+					?>
+					<div class="<?php echo implode(' ', $class); ?>">
+						<?php include_module('post-category', array(
+							'url' => get_term_link($sub_category),
+							'name' => $sub_category->name
 						)); ?>
+						<div class="post-date">
+							<span class="label"><?php _e("Posted", 'businesscarmanager'); ?></span>
+							<span class="date value"><?php the_date(); ?></span>
+						</div>
+						<div class="post-author">
+							<span class="label"><?php _e("Article By", 'businesscarmanager'); ?></span>
+							<span class="author value">
+								<?php 
+								if( $author = get_field('author') ) :
+									echo $author;
+								else:
+									the_author();
+								endif;
+								?>
+							</span>
+						</div>
+						<div class="post-share">
+							<?php include_module('share-links', array(
+								'title' => get_the_title(),
+								'url' => get_permalink(),
+								//'excerpt' => get_the_excerpt(),
+								'excerpt' => ''
+							)); ?>
+						</div>
 					</div>
+
+					<?php if( $primary_posts ) : ?>
+					<div class="primary-category-posts">
+						<h4 class="title"><?php _e("Editor's Picks", 'businesscarmanager'); ?></h4>
+						<ul class="posts-list">
+							<?php foreach( $primary_posts as $primary_post ) : ?>
+							<li>
+								<a href="<?php echo get_permalink($primary_post); ?>"><?php echo get_the_title($primary_post); ?></a>
+							</li>
+							<?php endforeach; ?>
+						</ul>
+					</div>
+					<?php endif; ?>
 				</div>
 				<div class="post-content">
 
@@ -168,7 +184,7 @@
 							$category = get_category( $primary_category );
 							$related_posts = get_related_tag_posts_ids($post->ID, 3, $primary_category); 
 							$color = get_category_color( $category->term_id);
-							$query = new WP_Query( array('post__in' => $related_posts, 'posts_per_page' => 3) );
+							$query = new WP_Query( array('post__in' => $related_posts, 'posts_per_page' => 3, 'ignore_sticky_posts' => true) );
 							$posts = array();
 
 							if( $query->have_posts() ) :
@@ -198,7 +214,7 @@
 									'posts' => $posts
 								));
 
-								//wp_reset_query();
+								wp_reset_query();
 								wp_reset_postdata();
 							endif;
 						endif;

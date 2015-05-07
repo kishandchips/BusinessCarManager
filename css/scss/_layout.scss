@@ -30,7 +30,7 @@ body {
 	position: relative;
 	@include transition(all 0.3s ease);
 	
-	.header-sticky & {
+	//.header-sticky & {
 		padding-top: 179px;
 
 		@include device-width(12) {
@@ -44,7 +44,7 @@ body {
 		@include device-width(7.5) {
 			padding-top: 130px;
 		}
-	}
+	//}
 
 	.navigation-open & {
 		@include translateX(-260px);
@@ -53,7 +53,10 @@ body {
 
 
 #header {
-	position: relative;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
 	z-index: 400;
 	background: #383d62;
 	color: #FFF;
@@ -63,7 +66,32 @@ body {
 		top: 0;
 		left: 0;
 		right: 0;
+		@include animation(from-top 0.3s ease);
 
+		> .inner {
+			padding-top: 0;
+		}
+
+		.logo-container {
+			display: none;
+
+			@include device-width(10) {
+				display: block;
+			}
+		}
+
+		.widgets {
+			left: 0;
+			right: 360px;
+			top: 100%;
+			background: #454b79;
+			background: rgba(#454b79, 0.8);
+			padding: 0;
+		}
+
+		.primary-navigation {
+			margin-top: 0;
+		}
 	}
 
 	.header-sticky.admin-bar & {
@@ -96,12 +124,17 @@ body {
 		top: 0;
 		right: 0;
 		padding: 10px;
+		text-align: center;
 
 		@include device-width(10) {
 			position: relative;
 			text-align: center;
 			background: #454b79;
 			margin: 0;
+		}
+
+		@include device-width(6) {
+			padding: 0;
 		}
 
 		.advert {
@@ -317,8 +350,18 @@ body {
 				@include font-size(16);
 				display: block;
 
-				@include device-width(12) {
+				@include device-width(14) {
+					@include font-size(15);
+					//padding: 0.7em 1em;
+				}
+
+				@include device-width(13) {
 					@include font-size(14);
+					padding: 0.7em 1em;
+				}
+
+				@include device-width(12) {
+					@include font-size(13);
 					padding: 0.7em 1em;
 				}
 			}
@@ -476,12 +519,12 @@ body {
 	&.sticky-top {
 		> .inner {
 			position: fixed;
-			top: 179px;
+			top: 46px;
 			margin-top: 3em;
 			bottom: auto;
 
 			.admin-bar & {
-				top: (179px + 32px);
+				top: (46px + 32px);
 			}
 		}
 	}

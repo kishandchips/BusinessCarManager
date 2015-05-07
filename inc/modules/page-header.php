@@ -1,7 +1,7 @@
 <?php 
 $class = array('page-header');
 $class[] = ( !empty($color) ) ? $color : '';
-$class[] = ( !empty($dropdown) ) ? 'has-dropdown' : 'no-dropdown';
+$class[] = ( !empty($sidebar) ) ? 'has-dropdown' : 'no-dropdown';
 ?>
 <header id="page-header" class="<?php echo implode(' ', $class); ?>">
 	<div class="inner container">

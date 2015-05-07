@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'icons';
-	src:url('fonts/icons.eot?19laqq');
-	src:url('fonts/icons.eot?#iefix19laqq') format('embedded-opentype'),
-		url('fonts/icons.woff?19laqq') format('woff'),
-		url('fonts/icons.ttf?19laqq') format('truetype'),
-		url('fonts/icons.svg?19laqq#icons') format('svg');
+	src:url('fonts/icons.eot?8rm1gf');
+	src:url('fonts/icons.eot?#iefix8rm1gf') format('embedded-opentype'),
+		url('fonts/icons.woff?8rm1gf') format('woff'),
+		url('fonts/icons.ttf?8rm1gf') format('truetype'),
+		url('fonts/icons.svg?8rm1gf#icons') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -29,6 +29,14 @@
 
 .icon-youtube:before {
 	content: "\f167";
+}
+
+.icon-close-quote:before {
+	content: "\e60d";
+}
+
+.icon-open-quote:before {
+	content: "\e60e";
 }
 
 .icon-caret-down:before {

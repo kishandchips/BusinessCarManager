@@ -72,6 +72,22 @@ a:not([class$="-btn"]) {
 
 blockquote {
 	margin: 2em 0;
+	position: relative;
+
+	&:before {
+		display: block;
+		text-align: center;
+		@include icon(open-quote);
+		color: #e3e3e3;
+	}
+
+	&:after {
+		display: block;
+		text-align: center;
+		@include icon(close-quote);
+		color: #e3e3e3;
+
+	}
 }
 
 .wp-caption,
@@ -123,8 +139,7 @@ blockquote {
 }
 
 .callout {
-	border-top: 1px solid #383D62;
-	border-bottom: 1px solid #383D62;
+	@extend blockquote;
 	width: 255px;
 	float: right;
 	margin: 1em 0 1em 2em;

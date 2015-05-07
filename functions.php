@@ -34,6 +34,10 @@ add_action( 'in_widget_form', 'custom_in_widget_form', 10, 3 );
 
 add_action( 'ajax_content', 'custom_ajax_content' );
 
+add_action( 'admin_init', 'custom_admin_init' );
+
+add_action( 'wp_ajax_facedetect_save', 'custom_wp_ajax_facedetect_save', 5);
+
 // Custom Filters
 
 add_filter( 'comment_form_defaults', 'custom_comment_form_defaults');
@@ -52,7 +56,7 @@ add_filter('the_content', 'custom_the_content', 0);
 
 add_filter( 'wp_setup_nav_menu_item', 'custom_wp_setup_nav_menu_item' );
 
-add_filter('the_posts', 'custom_the_posts');
+//add_filter('the_posts', 'custom_the_posts');
 
 add_filter('sidebars_widgets', 'custom_sidebars_widgets', 20);
 
@@ -114,6 +118,9 @@ function custom_setup_theme() {
 
 	add_editor_style('css/editor-style.css');
 
+	if( ! current_user_can('edit_posts') )
+		add_filter('show_admin_bar', '__return_false');
+
 }
 
 function custom_init(){
@@ -139,7 +146,7 @@ function custom_init(){
 				'exclude_from_search' => true,
 				'hierarchical'        => false,
 				'rewrite'             => array( 'slug' => $hubs_uri, 'with_front' => false ),
-				'supports'            => array( 'title', 'thumbnail', 'page-attributes'  ),
+				'supports'            => array( 'title', 'thumbnail', 'page-attributes', 'excerpt' ),
 				'has_archive'         => $hubs_uri,
 				'show_in_nav_menus'   => true,
 				'plural'			  => 'Hubs',
@@ -191,6 +198,13 @@ function custom_init(){
 	if( function_exists('acf_add_options_page') ) acf_add_options_page();
 
 
+}
+
+function custom_admin_init(){
+	if ( ! current_user_can( 'edit_posts' ) ){
+		wp_redirect( site_url() );
+		exit;		
+	}
 }
 
 function custom_template_include( $template ) {
@@ -661,4 +675,23 @@ function custom_not_logged_in($params, $content = null){
 	if ( !is_user_logged_in() ) return $content;
 
 	return; 
+}
+
+
+function custom_wp_ajax_facedetect_save() {
+
+	$att_id = isset( $_POST[ 'attachment_id' ] ) ? intval( $_POST[ 'attachment_id' ] ) : false;
+	$file = get_attached_file( $att_id );
+	$metadata = wp_get_attachment_metadata( $att_id );
+
+	if( !empty($metadata['sizes']) ) {
+		foreach( $metadata['sizes'] as $size => $sizeinfo ) {
+			if( strpos($size, 'x') !== false ) {
+				$resized_file = str_replace( basename( $file ), $sizeinfo['file'], $file );
+				$resized_file = apply_filters( 'wp_delete_file', $resized_file );
+				@ unlink( path_join( $uploadpath['basedir'], $resized_file ) );
+			}
+			
+		}
+	}
 }
