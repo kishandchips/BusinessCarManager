@@ -1,11 +1,23 @@
-<div id="newsletter" class="newsletter">
+<?php 
+$sflf_category = get_field('sflf_category', 'options'); 
+$is_sflf_category = is_sflf_category();
+$class = array('newsletter');
+$class[] = ($is_sflf_category) ? 'sflf-category' : '';
+?>
+		
+<div id="newsletter" class="<?php echo implode( ' ', $class); ?>">
 	<div class="inner container">
 		<header class="newsletter-header">
 			<h6 class="title"><?php _e("Newsletter", 'businesscarmanager'); ?></h6>
 		</header>		
 		<div class="content">
-
-			<h4 class="description"><?php echo sprintf( __('Get the latest from %s, all <b>free</b> and delivered to your inbox.', 'businesscarmanager'), get_bloginfo( 'name' ) ); ?></h4>
+			<h4 class="description">
+				<?php if( $is_sflf_category ) : ?>
+				<?php echo sprintf( __('Get the latest from %s, delivered to your inbox.', 'businesscarmanager'), get_cat_name($sflf_category) ); ?>
+				<?php else: ?>
+				<?php echo sprintf( __('Get the latest from %s, all <b>free</b> and delivered to your inbox.', 'businesscarmanager'), get_bloginfo( 'name' ) ); ?>
+				<?php endif; ?>
+			</h4>
 
 			<ul class="tick-list key-points">
 				<li><?php _e("Company Car News", 'businesscarmanager'); ?></li>

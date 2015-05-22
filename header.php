@@ -23,6 +23,15 @@
 	<link href="<?php echo get_stylesheet_directory_uri(); ?>/images/misc/favicon.png" rel="shortcut icon" type="image/x-icon">
 
 	<?php wp_head(); ?>
+
+	<script>
+	    var $mcGoal = {'settings':{'uuid':'2c237196472196c0c27d3edb6','dc':'us8'}};
+	    (function() {
+		    var sp = document.createElement('script'); sp.type = 'text/javascript'; sp.async = true; sp.defer = true;
+		    sp.src = ('https:' == document.location.protocol ? 'https://s3.amazonaws.com/downloads.mailchimp.com' : 'http://downloads.mailchimp.com') + '/js/goal.min.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp, s);
+	    })();
+	</script>
 </head>
 <body <?php body_class(); ?>>
 <div id="tortilla">

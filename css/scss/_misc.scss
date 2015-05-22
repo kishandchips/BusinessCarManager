@@ -17,7 +17,6 @@ ul, ol {
 
 img {
 	max-width: 100%;
-	height: auto;
 
 	@include print() {
 		display: none;

@@ -28,6 +28,10 @@ $category_description = category_description();
 				<?php $i = 0; ?>
 				<?php while( have_posts() ) : the_post(); ?>
 				<?php 
+				if( $i === 3 - 1 ) :
+					if( dynamic_sidebar( 'category_content' ) ) $i++;
+				endif;
+
 				$image_url = ( $i < 7 ) ? get_image(get_post_thumbnail_id(), array(500, 400)) : null;
 				$category = get_post_sub_category();
 				?>
@@ -50,9 +54,11 @@ $category_description = category_description();
 			<?php include_module('pagination'); ?>
 			<?php endif; ?>
 		</div>
+		<?php wp_reset_query(); ?>
+		<?php wp_reset_postdata(); ?>
 		<?php get_sidebar(); ?>
 	</div>
-
+	
 </section>
 <?php include_module('newsletter'); ?>
 <?php get_footer(); ?>

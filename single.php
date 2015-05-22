@@ -79,13 +79,13 @@
 					<?php if( $primary_posts ) : ?>
 					<div class="primary-category-posts">
 						<h4 class="title"><?php _e("Editor's Picks", 'businesscarmanager'); ?></h4>
-						<ul class="posts-list">
+						<ol class="posts-list">
 							<?php foreach( $primary_posts as $primary_post ) : ?>
 							<li>
 								<a href="<?php echo get_permalink($primary_post); ?>"><?php echo get_the_title($primary_post); ?></a>
 							</li>
 							<?php endforeach; ?>
-						</ul>
+						</ol>
 					</div>
 					<?php endif; ?>
 				</div>
