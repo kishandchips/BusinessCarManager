@@ -64,6 +64,8 @@ add_filter( 'pre_option_link_manager_enabled', '__return_true' );
 
 add_filter( 'widget_links_args', 'custom_widget_links_args');
 
+add_filter( 'tiny_mce_before_init', 'custom_tiny_mce_before_init' );
+
 remove_filter( 'nav_menu_description', 'strip_tags' );
 
 //Custom shortcodes
@@ -151,6 +153,7 @@ function custom_init(){
 				'show_in_nav_menus'   => true,
 				'plural'			  => 'Hubs',
 				'singluar'			  => 'Hub',
+				'exclude_from_search' => true,
 				'taxonomies' 		  => array('hub_category')
 	   		)
 	   	);
@@ -180,6 +183,7 @@ function custom_init(){
 				'supports'            => array( 'title', 'thumbnail', 'editor', 'page-attributes'  ),
 				'has_archive'         => $suppliers_uri,
 				'show_in_nav_menus'   => true,
+				'exclude_from_search' => true,
 				'plural'			  => 'Suppliers',
 				'singluar'			  => 'Supplier',
 				'taxonomies' 		  => array('supplier_category')
@@ -233,6 +237,8 @@ function custom_widgets_init() {
 
 	$primary_categories = get_field('primary_categories', 'options');
 
+	$primary_categories[] = get_field('sflf_category');
+
 	include( $template_directory . '/inc/widgets/advert.php');
 
 	include( $template_directory . '/inc/widgets/widgets.php');
@@ -263,6 +269,18 @@ function custom_widgets_init() {
 	register_sidebar( array(
 		'name' => __( 'Header', 'businesscarmanager' ),
 		'id' => 'header',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h5 class="widget-title">',
+		'after_title' => '</h5>',
+		'limit' => 1
+	) );
+
+
+
+	register_sidebar( array(
+		'name' => __( 'Category content', 'businesscarmanager' ),
+		'id' => 'category_content',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget' => '</aside>',
 		'before_title' => '<h5 class="widget-title">',
@@ -539,6 +557,10 @@ function get_category_primary_category( $id ) {
 
 function get_category_color( $category_id ) {
 
+	if( $color = get_field('color', 'category_' .$category_id) ) {
+		return $color;
+	}
+
 	$category = get_top_level_category( $category_id );
 	return get_field('color', 'category_' .$category->term_id);
 }
@@ -694,4 +716,38 @@ function custom_wp_ajax_facedetect_save() {
 			
 		}
 	}
+}
+
+function is_sflf_category() {
+	$sflf_category = get_field('sflf_category', 'options');
+	return (is_category($sflf_category) || in_category($sflf_category));
+}
+
+function custom_tiny_mce_before_init( $settings ) {
+
+    $style_formats = array(
+    	array(
+        	'title' => 'Callout quote',
+        	'block' => 'div',
+        	'classes' => 'callout',
+        	'wrapper' => true
+        ),
+		array(
+        	'title' => 'Left-aligned panel',
+        	'block' => 'div',
+        	'classes' => 'leftBox',
+        	'wrapper' => true
+        ),
+		array(
+        	'title' => 'Right-aligned panel',
+        	'block' => 'div',
+        	'classes' => 'rightBox',
+        	'wrapper' => true
+        )
+    );
+
+    $settings['style_formats'] = json_encode( $style_formats );
+
+    return $settings;
+
 }

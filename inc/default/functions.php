@@ -221,7 +221,7 @@ if ( ! function_exists( 'widget_instance' )) {
 
 		// validation
 		if ( !array_key_exists($instance_id, $wp_registered_widgets) ) {
-			echo 'No widget found with that id'; return;
+			return false;
 		}
 
 		// find sidebar 

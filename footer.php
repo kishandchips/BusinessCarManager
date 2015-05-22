@@ -28,7 +28,7 @@ global $woocommerce;
 	</div>
 </div><!-- #wrap -->
 
-<script type="text/javascript">
+<script>
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', '<?php the_field('google_analytics_account', 'options'); ?>']);
   _gaq.push(['_trackPageview']);

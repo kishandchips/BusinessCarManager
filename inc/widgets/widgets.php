@@ -25,7 +25,7 @@ class Widgets_Widget extends WP_Widget {
 	function widget( $args, $instance ) {
 		$name = 'widget_'.$args['widget_id'];
         $widgets = get_field('widgets', $name);
-		
+		echo '<!-- Widgets: '. $instance['title'] . ' -->';
 		if( $widgets ) {
 			foreach($widgets as $widget) {
 				acf_Widget::widget_instance($widget);

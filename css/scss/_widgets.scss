@@ -13,8 +13,13 @@
 
 .widget_advert {
 	a,
+	object {
+		display: inline-block;
+	}
+
 	img {
-		display: block;
+		display: inline-block;
+		vertical-align: top;
 	}
 }
 

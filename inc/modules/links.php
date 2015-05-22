@@ -1,3 +1,4 @@
+<?php if( $category ): ?>
 <div class="links">
 	<?php wp_list_bookmarks( array(
 		'category' => $category,
@@ -12,3 +13,4 @@
 		'category_after' => ''
 	) ); ?>
 </div>
+<?php endif; ?>

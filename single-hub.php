@@ -99,18 +99,23 @@ $logo_url = get_image( get_field('logo'), array(180, 180));
 								'posts' => $posts
 							));
 
-							//wp_reset_query();
+							wp_reset_query();
 							wp_reset_postdata();
 						endif;
 					endforeach; 
 					?>
 				</div>
 				<?php endif; ?>
+				<?php 
+				wp_reset_query();
+				wp_reset_postdata(); 
+				?>
 			</div>
 		</div>
 		<?php get_sidebar(); ?>
 	</div>
 
+	<?php if( $primary_link_category ) :  ?>
 	<div id="links" class="related-hub-links">
 		<div class="inner container">
 			<?php include_module('links', array(
@@ -118,6 +123,7 @@ $logo_url = get_image( get_field('logo'), array(180, 180));
 			)); ?>
 		</div>
 	</div>
+	<?php endif; ?>
 		
 	<?php include_module('newsletter'); ?>
 </section>

@@ -158,8 +158,8 @@
 
 					//console.log(inner.height(), container.height())
 
-				if( containerHeight - innerHeight > 0) {
-					//console.log(innerOffset.top + innerHeight, windowHeight);
+				if( element.outerHeight() < containerHeight && containerHeight - innerHeight > 0) {
+					
 					if(innerOffset.top + innerHeight > windowHeight) {
 						inner.waypoint(function(direction){
 							element.toggleClass('sticky-bottom', direction === 'down');
@@ -178,10 +178,11 @@
 							element.toggleClass('sticky-top', direction === 'down');
 						});
 
+
 						container.waypoint( function(direction) {
 							element.toggleClass('sticky-very-bottom', direction === 'down');
 						}, {
-							offset: -containerHeight
+							offset: -(containerHeight - innerHeight)
 						});
 					}
 					
@@ -237,6 +238,8 @@
 		            responsiveCheckTimeout: 150
 		        };
 
+		        main.w.on('load', this.loaded);
+
 				element.each(function(){
 					var advert = $(this),
 						placementid = advert.data('placement-id'),
@@ -246,30 +249,52 @@
 						ADTECH.config.placements[placementid] = { 
 							params: {
 								target: '_blank',
-								key: keywords
-							},
-							responsive: {
-								useresponsive: true, 
-								bounds: [
-									// {
-									// 	id: 5661899, 
-									// 	min: 0,
-									// 	max: 749
-									// },
-									{
-									   id: placementid,
-				                        min: 750,
-				                        max: 9999
-				                    }
-								]
-							}
+								key: keywords,
+								loc: '100'
+							}//,
+							// responsive: {
+							// 	useresponsive: true, 
+							// 	bounds: [
+							// 		// {
+							// 		// 	id: 5661899, 
+							// 		// 	min: 0,
+							// 		// 	max: 749
+							// 		// },
+							// 		{
+							// 		   id: placementid,
+				   //                      min: 750,
+				   //                      max: 9999
+				   //                  }
+							// 	]
+							// }
 						};
 
 						ADTECH.enqueueAd(placementid);
+						
 					}
 				});
 
 				ADTECH.executeQueue();
+
+
+				setInterval(function(){
+					element.each(function(){
+						var advert = $(this),
+							placementid = advert.data('placement-id');
+
+						ADTECH.loadAd(placementid);
+					});
+				}, 60000 * 1.5)
+			},
+			loaded: function() {
+				var element = main.adverts.element;
+				element.each(function() {
+					var advert = $(this);
+
+					if( advert.height() < 40 ) {
+						advert.remove();
+					}
+				});
 			}
 		},
 
