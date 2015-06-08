@@ -237,7 +237,7 @@ function custom_widgets_init() {
 
 	$primary_categories = get_field('primary_categories', 'options');
 
-	$primary_categories[] = get_field('sflf_category');
+	if( $sflf_category = get_field('sflf_category') ) $primary_categories[] = $sflf_category;
 
 	include( $template_directory . '/inc/widgets/advert.php');
 

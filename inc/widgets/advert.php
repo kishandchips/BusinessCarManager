@@ -35,7 +35,7 @@ class Advert_Widget extends WP_Widget {
 	function widget( $args, $instance ) {
 		
 		$placement_id = $instance['placement_id'];
-		$keywords = $instance['keywords'];
+		$keywords = ( !empty($instance['keywords'])) ? $instance['keywords'] : '';
 
 		echo $args['before_widget'];
 			
