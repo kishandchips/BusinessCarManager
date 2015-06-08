@@ -374,6 +374,14 @@ table {
 		}
 	}
 
+	ol {
+		@extend .number-list;
+
+		li {
+			margin: 0.5em 0;
+		}
+	}
+
 	table {
 		margin: 1em 0;
 		width: 100%;
@@ -930,7 +938,6 @@ table {
 	}
 }
 
-
 .bullet-list {
 	li {
 		position: relative;
@@ -942,6 +949,25 @@ table {
 			color: #ee4502;
 			top: 4px;
 			left: 0;
+		}
+	}
+}
+
+.number-list {
+	counter-reset: counter;
+
+	li {
+		position: relative;
+		padding-left: 25px;
+		counter-increment: counter;
+
+		&:before {
+			content: counter(counter);
+			position: absolute;
+			color: #ee4502;
+			top: 0;
+			left: 0;
+			@include interface-bold;
 		}
 	}
 }

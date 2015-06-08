@@ -32,7 +32,7 @@ $logo_url = get_image( get_field('logo'), array(180, 180));
 				<div class="related-posts">
 					<?php while( $query->have_posts() ) : $query->the_post(); ?>
 					<?php 
-					$image_url = get_image(get_post_thumbnail_id(), array(500, 500));
+					$image_url = get_image(get_post_thumbnail_id(), array(500, 300));
 					$category = get_post_primary_category();
 					$color = get_category_color( $category->term_id);
 					?>

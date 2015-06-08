@@ -149,11 +149,11 @@
 				var element = main.sidebar.element,
 					container = main.sidebar.container,
 					inner = main.sidebar.inner,
-					header = main.header.element,
+					//header = main.header.element,
 					containerHeight = container.height(),
 					innerHeight = inner.height(),
 					innerOffset = inner.offset(),
-					headerHeight = header.height() + parseInt(header.css('top')),
+					//headerHeight = header.height() + parseInt(header.css('top')),
 					windowHeight = main.w.height();
 
 					//console.log(inner.height(), container.height())
@@ -284,17 +284,19 @@
 
 						ADTECH.loadAd(placementid);
 					});
-				}, 60000 * 1.5)
+				}, 60000 * 1.5);
 			},
 			loaded: function() {
 				var element = main.adverts.element;
-				element.each(function() {
-					var advert = $(this);
+				setTimeout(function(){
+					element.each(function() {
+						var advert = $(this);
 
-					if( advert.height() < 40 ) {
-						advert.remove();
-					}
-				});
+						if( advert.height() < 40 ) {
+							advert.remove();
+						}
+					});
+				}, 1000);
 			}
 		},
 

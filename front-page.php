@@ -24,7 +24,7 @@ $template_directory_uri = get_template_directory_uri();
 					<li>
 						<?php include_module('cta-btn', array(
 							'label' => '<img src="'.$template_directory_uri.'/images/icons/price.png" /><br />'.__("Get the Best Lease Price", 'businesscarmanager'),
-							'url' => 'http://www.businesscarmanager.co.uk/category/car-leasing-and-car-finance/',
+							'url' => 'http://www.businesscarmanager.co.uk/car-leasing-prices/',
 							'color' => 'dark-blue'
 						)); ?>
 					</li>
