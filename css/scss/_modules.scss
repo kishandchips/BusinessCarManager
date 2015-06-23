@@ -370,6 +370,13 @@ table {
 		float: right;
 		margin: 1em 0 1em 2em;
 		@extend blockquote;
+	
+		p {
+			font-size: 1.4em;
+			@include interface-bold;
+			line-height: 1.2;
+			margin: 0.5em 0;
+		}
 	}
 
 	ul {
