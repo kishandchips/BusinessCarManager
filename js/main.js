@@ -284,7 +284,7 @@
 
 						ADTECH.loadAd(placementid);
 					});
-				}, 60000 * 1.5);
+				}, 60000 * 0.75);
 			},
 			loaded: function() {
 				var element = main.adverts.element;
