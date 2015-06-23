@@ -2,12 +2,12 @@
 <?php 
 $category_id = get_query_var('cat');
 $primary_category = get_category_primary_category($category_id);
-$color = get_category_color($primary_category->term_id);
-$sidebar = ( !empty($primary_category) ) ? 'category_header_'.$primary_category->term_id : '';
-$label = ( !empty($primary_category) && $category_id != $primary_category->term_id ) ? $primary_category->name : '';
+$primary_category_id = ( !empty($primary_category) ) ? $primary_category->term_id : null;
+$color = get_category_color($primary_category_id);
+$sidebar = ( !empty($primary_category) ) ? 'category_header_'.$primary_category_id : '';
+$label = ( !empty($primary_category) && $category_id != $primary_category_id ) ? $primary_category->name : '';
 $category_description = category_description();
 ?>
-
 <section id="category">
 	<?php include_module('page-header', array(
 		'color' => $color,

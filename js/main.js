@@ -243,31 +243,11 @@
 				element.each(function(){
 					var advert = $(this),
 						placementid = advert.data('placement-id'),
-						keywords = advert.data('keywords');
+						options = advert.data('options');
 
+					console.log(options);
 					if( placementid ) {
-						ADTECH.config.placements[placementid] = { 
-							params: {
-								target: '_blank',
-								key: keywords,
-								loc: '100'
-							}//,
-							// responsive: {
-							// 	useresponsive: true, 
-							// 	bounds: [
-							// 		// {
-							// 		// 	id: 5661899, 
-							// 		// 	min: 0,
-							// 		// 	max: 749
-							// 		// },
-							// 		{
-							// 		   id: placementid,
-				   //                      min: 750,
-				   //                      max: 9999
-				   //                  }
-							// 	]
-							// }
-						};
+						ADTECH.config.placements[placementid] = options;
 
 						ADTECH.enqueueAd(placementid);
 						
