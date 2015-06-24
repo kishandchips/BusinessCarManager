@@ -2,6 +2,7 @@
 <?php 
 $primary_categories = get_field('primary_categories', 'options'); 
 $post_tag = get_field('post_tag');
+$tag = get_tag($post_tag);
 $categories = get_field('categories'); 
 $primary_link_category = get_field('primary_link_category');
 $logo_url = get_image( get_field('logo'), array(180, 180));
@@ -50,6 +51,9 @@ $logo_url = get_image( get_field('logo'), array(180, 180));
 					)); ?>
 					</div>
 					<?php endwhile; ?>
+				</div>
+				<div class="more-cta">
+					<a class="primary-btn btn" href="<?php echo get_term_link( $tag ); ?>"><?php echo sprintf(__("More %s content", 'businesscarmanager' ), $tag->name); ?></a>
 				</div>
 				<?php endif; ?>
 				<?php if($categories): ?>

@@ -6,6 +6,7 @@ $class[] = ( !empty($color) ) ? $color : '';
 	<div class="inner">
 		<header class="header category-posts-header">
 			<h6 class="title"><a href="<?php echo $url; ?>"><?php echo $name; ?></a></h6>
+			<a href="<?php echo $url; ?>" class="secondary-btn btn"><?php echo sprintf(__("More %s", 'businesscarmanager'), $name); ?></a>
 		</header>
 		<div class="posts">
 			<ul class="post-list">

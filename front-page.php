@@ -39,23 +39,26 @@ $template_directory_uri = get_template_directory_uri();
 				<?php endif; ?>
 				<?php 
 				$category = get_category($primary_category); 
-				$color = get_category_color($primary_category);
-				$description = get_field('homepage_description', 'category_'.$category->term_id);
 
-				if( strlen($description) > 140 ) {
-					$description = substr($description, 0, 140).'...';
-				}
-				?>
-				<div class="category">
-					<?php include_module('category-item', array(
-						'url' => get_term_link( $category ),
-						'title' => $category->name, 
-						'color' => $color,
-						'description' => $description,
-						'image_url' => get_image(get_field('homepage_image', 'category_'.$category->term_id), array(500, 250))
-					)); ?>
-				</div>
-				<?php $i++; ?>
+				if( $category ) :
+					$color = get_category_color($primary_category);
+					$description = get_field('homepage_description', 'category_'.$category->term_id);
+
+					if( strlen($description) > 140 ) {
+						$description = substr($description, 0, 140).'...';
+					}
+					?>
+					<div class="category">
+						<?php include_module('category-item', array(
+							'url' => get_term_link( $category ),
+							'title' => $category->name, 
+							'color' => $color,
+							'description' => $description,
+							'image_url' => get_image(get_field('homepage_image', 'category_'.$category->term_id), array(500, 250))
+						)); ?>
+					</div>
+					<?php $i++; ?>
+				<?php endif; ?>
 				<?php endforeach; ?>
 			</div>
 			<?php endif; ?>

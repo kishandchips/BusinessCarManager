@@ -17,6 +17,8 @@
 		)
 	));
 
+	$image = get_post( get_post_thumbnail_id($post->ID) );
+
 	$restricted = ( get_post_meta( $post->ID, '_field_select__1', true) == 'yes' || get_field('restricted') ) && !is_user_logged_in();
 ?>
 <section id="single">
@@ -35,8 +37,8 @@
 				<?php if( has_post_thumbnail() ) : ?>
 				<figure class="wp-caption post-image thumbnail" >
 					<?php the_post_thumbnail(); ?>
-					<?php if( $caption = get_post( get_post_thumbnail_id($post->ID) )->post_excerpt ) : ?>
-					<figcation class="wp-caption-text"><?php echo $caption; ?></figcation>
+					<?php if( !empty($image->post_excerpt) ) : ?>
+					<figcation class="wp-caption-text"><?php echo $image->post_excerpt; ?></figcation>
 					<?php endif; ?>
 				</figure>
 				<?php endif; ?>

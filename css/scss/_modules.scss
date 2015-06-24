@@ -601,7 +601,7 @@ table {
 	&.purple {
 		border-top-color: $purple_primary;
 
-		.category-posts-header a {
+		.category-posts-header .title a {
 			color: $purple_primary; 
 		}
 	}
@@ -609,7 +609,7 @@ table {
 	&.green {
 		border-top-color: $green_primary;
 
-		.category-posts-header a {
+		.category-posts-header .title a {
 			color: $green_primary; 
 		}
 	}
@@ -617,7 +617,7 @@ table {
 	&.teal {
 		border-top-color: $teal_primary;
 
-		.category-posts-header a {
+		.category-posts-header .title a {
 			color: $teal_primary; 
 		}
 	}
@@ -625,7 +625,7 @@ table {
 	&.blue {
 		border-top-color: $blue_primary;
 
-		.category-posts-header a {
+		.category-posts-header .title a {
 			color: $blue_primary; 
 		}
 	}
@@ -633,7 +633,7 @@ table {
 	&.red {
 		border-top-color: $red_primary;
 
-		.category-posts-header a {
+		.category-posts-header .title a {
 			color: $red_primary; 
 		}
 	}
@@ -641,7 +641,7 @@ table {
 	&.violet {
 		border-top-color: $violet_primary;
 
-		.category-posts-header a {
+		.category-posts-header .title a {
 			color: $violet_primary; 
 		}
 	}
@@ -649,7 +649,7 @@ table {
 	&.grey {
 		border-top-color: $grey_primary;
 
-		.category-posts-header a {
+		.category-posts-header .title a {
 			color: $grey_primary; 
 		}
 	}
@@ -661,10 +661,19 @@ table {
 	.category-posts-header {
 		position: absolute;
 		width: 220px;
+		bottom: 0;
+		top: 0;
 		padding-right: 1em;
 
 		.title {
 			padding: 0.5em 0;
+		}
+
+		.btn {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			@include font-size(14);
 		}
 	}
 

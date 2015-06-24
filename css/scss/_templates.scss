@@ -92,9 +92,19 @@
 			margin: 0 0 2em 0;
 
 			.category-posts-header {
+				
 				@include device-width(12) {
 					position: relative;
 					width: auto;
+				}
+
+				.btn {
+					@include device-width(12) {
+						left: auto;
+						right: 0;
+						bottom: auto;
+						top: 0.5em;
+					}
 				}
 			}
 
@@ -579,6 +589,15 @@
 					position: relative;
 					width: auto;
 				}
+
+				.btn {
+					@include device-width(12) {
+						left: auto;
+						right: 0;
+						bottom: auto;
+						top: 0.5em;
+					}
+				}
 			}
 
 			.posts {
@@ -750,7 +769,7 @@
 			float: left;
 			width: 33.333%;
 			padding: 0 10px;
-			margin: 0 0 3em 0;
+			margin: 0 0 0 0;
 
 			@include device-width(7) {
 				width: 50%;
@@ -776,6 +795,20 @@
 		}
 	}
 
+	.more-cta {
+		margin: 0 0 3em 0;
+		.btn {
+			background: #EE4504;
+			color: #FFF;
+			display: block;
+
+			&:hover {
+				background: #000;
+			}
+		}
+	}
+
+
 	.related-category-posts {
 		margin: 2em 0;
 
@@ -783,9 +816,20 @@
 			margin: 0 0 1em 0;
 
 			.category-posts-header {
+				
 				@include device-width(12) {
 					position: relative;
 					width: auto;
+					padding: 0;
+				}
+
+				.btn {
+					@include device-width(12) {
+						left: auto;
+						right: 0;
+						bottom: auto;
+						top: 0.5em;
+					}
 				}
 			}
 

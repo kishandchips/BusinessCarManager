@@ -4,6 +4,8 @@ $title = __("Archive", 'businesscaramanager');
 
 if( is_search() ) {
 	$title = __("Search results for: ", 'businesscaramanager') . get_search_query();
+} elseif ( is_tag() ) {
+	$title = single_tag_title('', false);
 }
 ?>
 <section id="index">
