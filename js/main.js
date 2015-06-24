@@ -245,7 +245,6 @@
 						placementid = advert.data('placement-id'),
 						options = advert.data('options');
 
-					console.log(options);
 					if( placementid ) {
 						ADTECH.config.placements[placementid] = options;
 
