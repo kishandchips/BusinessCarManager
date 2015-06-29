@@ -17,15 +17,15 @@
 		)
 	));
 
-	$image = get_post( get_post_thumbnail_id($post->ID) );
-
+$sidebar = ( !empty($category) ) ? 'category_header_'.$category->term_id : '';
+$image = get_post( get_post_thumbnail_id($post->ID) );
 	$restricted = ( get_post_meta( $post->ID, '_field_select__1', true) == 'yes' || get_field('restricted') ) && !is_user_logged_in();
 ?>
 <section id="single">
 	<?php include_module('page-header', array(
 		'title' => $category->name,
 		'color' => $color,
-		'sidebar' => 'category_header_'.$category->term_id
+		'sidebar' => $sidebar
 	)); ?>
 	<div class="post-header container">
 		<h1 class="post-title title"><?php the_title(); ?></h1>

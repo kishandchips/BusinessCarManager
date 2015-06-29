@@ -102,6 +102,7 @@
 				});
 
 				this.search.init();
+				this.advert.init();
 				
 			},
 			search: {
@@ -126,6 +127,19 @@
 							html.removeClass('search-open');
 						}, 100);
 					});
+				}
+			},
+			advert: {
+				element: $('#header .advert'),
+				init: function(){
+
+					main.w.on('load', this.loaded);
+				},
+				loaded: function(){
+					var element = main.header.advert.element;
+					if(element.hasClass('responsive')) {
+						main.body.element.addClass('responsive-advert-header');
+					}
 				}
 			}
 		},
@@ -243,31 +257,10 @@
 				element.each(function(){
 					var advert = $(this),
 						placementid = advert.data('placement-id'),
-						keywords = advert.data('keywords');
+						options = advert.data('options');
 
 					if( placementid ) {
-						ADTECH.config.placements[placementid] = { 
-							params: {
-								target: '_blank',
-								key: keywords,
-								loc: '100'
-							}//,
-							// responsive: {
-							// 	useresponsive: true, 
-							// 	bounds: [
-							// 		// {
-							// 		// 	id: 5661899, 
-							// 		// 	min: 0,
-							// 		// 	max: 749
-							// 		// },
-							// 		{
-							// 		   id: placementid,
-				   //                      min: 750,
-				   //                      max: 9999
-				   //                  }
-							// 	]
-							// }
-						};
+						ADTECH.config.placements[placementid] = options;
 
 						ADTECH.enqueueAd(placementid);
 						
@@ -284,7 +277,7 @@
 
 						ADTECH.loadAd(placementid);
 					});
-				}, 60000 * 0.75);
+				}, adverts.reloaddelay * 1000);
 			},
 			loaded: function() {
 				var element = main.adverts.element;

@@ -332,6 +332,10 @@ function custom_scripts() {
 		'base' => site_url(),
 		'ajax' => admin_url('admin-ajax.php')
 	));
+
+	wp_localize_script( 'main', 'adverts', array(
+		'reloaddelay' => get_field('reload_delay', 'options')
+	));
 }
 
 
@@ -540,18 +544,12 @@ function get_post_primary_category( $id = '') {
 function get_category_primary_category( $id ) {
 	$id = ( $id ) ? $id : get_query_var('cat');
 
-	$primary_category = get_top_level_category( $id );
-	// $primary_categories = get_field('primary_categories', 'options');
-	// $primary_category = array();
+	$primary_categories = get_field('primary_categories', 'options');
 
-	// if( $primary_categories ) {
-	// 	foreach( $primary_categories as $category ) {
-	// 		if( in_category() ) {
-	// 			$category = 
-	// 			continue;
-	// 		}
-	// 	}	
-	// }
+	$category = ( in_array($id, $primary_categories) ) ? get_category( $id ) : get_top_level_category( $id );
+
+	$primary_category = ( in_array($category->term_id, $primary_categories) ) ? $category : null;
+
 	return $primary_category;
 }
 
@@ -562,7 +560,8 @@ function get_category_color( $category_id ) {
 	}
 
 	$category = get_top_level_category( $category_id );
-	return get_field('color', 'category_' .$category->term_id);
+	$color = ( !empty($category->term_id) ) ? get_field('color', 'category_' .$category->term_id) : '';
+	return $color;
 }
 
 function custom_wp_setup_nav_menu_item( $menu_item ) {
