@@ -305,3 +305,16 @@ fieldset {
 		margin-top: 28px;
 	}
 }
+
+.compselform {
+	@extend .clearfix;
+	
+	.seldiv {
+		float: left;
+		margin-right: 0.5em;
+
+		label {
+			display: block;
+		}
+	}
+}
