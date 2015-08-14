@@ -7,13 +7,15 @@ $color = get_category_color($primary_category_id);
 $sidebar = ( !empty($primary_category) ) ? 'category_header_'.$primary_category_id : '';
 $label = ( !empty($primary_category) && $category_id != $primary_category_id ) ? $primary_category->name : '';
 $category_description = category_description();
+$header_description = get_field('header_description', 'category_'.$primary_category_id);
 ?>
 <section id="category">
 	<?php include_module('page-header', array(
 		'color' => $color,
 		'label' => $label,
 		'title' => single_cat_title('', false),
-		'sidebar' => $sidebar
+		'sidebar' => $sidebar,
+		'description' => $header_description
 	)); ?>
 
 	<div class="sidebar-container container">

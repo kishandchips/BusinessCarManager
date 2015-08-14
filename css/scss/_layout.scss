@@ -41,13 +41,13 @@ body {
 			padding-top: 160px;
 		}
 
-		@include device-width(8) {
+		@include device-width(7.5) {
 			padding-top: 50px;
 		}
 	//}
 
 	.responsive-advert-header & {
-		@include device-width(8) {
+		@include device-width(7.5) {
 			padding-top: (50px + 50px);
 		}	
 	}
@@ -625,6 +625,15 @@ body {
 	.page-title {
 		float: left;
 		margin-right: 1em;
+	}
+
+	.page-description {
+		position: absolute;
+		right: 0;
+
+		@include device-width(8) {
+			display: none;
+		}
 	}
 
 	.dropdown {
