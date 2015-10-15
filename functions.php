@@ -277,7 +277,7 @@ function custom_widgets_init() {
 
 
 	register_sidebar( array(
-		'name' => __( 'Category content', 'businesscarmanager' ),
+		'name' => __( 'Content', 'businesscarmanager' ),
 		'id' => 'category_content',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget' => '</aside>',

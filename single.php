@@ -17,15 +17,17 @@
 		)
 	));
 
-$sidebar = ( !empty($category) ) ? 'category_header_'.$category->term_id : '';
-$image = get_post( get_post_thumbnail_id($post->ID) );
+	$sidebar = ( !empty($category) ) ? 'category_header_'.$category->term_id : '';
+	$header_description = ( !empty($category) ) ? get_field('header_description', 'category_'.$category->term_id) : '';
+	$image = get_post( get_post_thumbnail_id($post->ID) );
 	$restricted = ( get_post_meta( $post->ID, '_field_select__1', true) == 'yes' || get_field('restricted') ) && !is_user_logged_in();
 ?>
 <section id="single">
 	<?php include_module('page-header', array(
 		'title' => $category->name,
 		'color' => $color,
-		'sidebar' => $sidebar
+		'sidebar' => $sidebar,
+		'description' => $header_description
 	)); ?>
 	<div class="post-header container">
 		<h1 class="post-title title"><?php the_title(); ?></h1>
@@ -186,7 +188,7 @@ $image = get_post( get_post_thumbnail_id($post->ID) );
 							$category = get_category( $primary_category );
 							$related_posts = get_related_tag_posts_ids($post->ID, 3, $primary_category); 
 							$color = get_category_color( $category->term_id);
-							$query = new WP_Query( array('post__in' => $related_posts, 'posts_per_page' => 3, 'ignore_sticky_posts' => true) );
+							$query = new WP_Query( array('post__in' => $related_posts, 'posts_per_page' => 3, 'ignore_sticky_posts' => true, 'cat' => $primary_category) );
 							$posts = array();
 
 							if( $query->have_posts() ) :

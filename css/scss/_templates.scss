@@ -14,6 +14,22 @@
 		@include device-width(10) {
 			padding-right: 0;
 		}
+
+		.widget_advert {
+			display: none;
+			margin-bottom: 2em;
+			padding: 0 10px;
+
+			@include device-width(6) {
+				display: block;
+			}
+
+			.advert {
+				background: #eee;
+			    padding: 10px;
+			    text-align: center;
+			}
+		}
 	}
 
 	.cta-list {
@@ -385,8 +401,17 @@
 		padding: 0 10px;
 
 		.title {
+			@include font-size(50);
 			padding: 0.5em 0;
 			border-bottom: #999 1px solid;
+
+			@include device-width(8) {
+				@include font-size(40);
+			}
+
+			@include device-width(6) {
+				@include font-size(35);
+			}
 		}
 	}
 
@@ -424,7 +449,7 @@
 		}
 
 		.post-image {
-			margin-left: -220px;
+			//margin-left: -220px;
 			margin-bottom: 2em;
 
 			@include device-width(10) {
@@ -440,6 +465,7 @@
 			width: 180px;
 			position: absolute;
 			left: 0;
+			top: 0;
 			
 			@include device-width(10) {
 				position: relative;

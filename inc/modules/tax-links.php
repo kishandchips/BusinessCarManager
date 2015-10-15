@@ -14,7 +14,7 @@
 			'color' => 'yellow',
 			'url' => 'http://www.businesscarmanager.co.uk/company-car-tax-tables-tax-years-201516-201920/',
 			'label' => __("Tax Tables", 'businesscarmanager'),
-			'description' => __("How your CO2 emmisions affect your tax ", 'businesscarmanager')
+			'description' => __("How your CO2 emissions affect your tax ", 'businesscarmanager')
 		));?>
 		</a>
 	</li>

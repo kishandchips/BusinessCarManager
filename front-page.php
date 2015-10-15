@@ -36,6 +36,7 @@ $template_directory_uri = get_template_directory_uri();
 						)); ?>
 					</li>
 				</ul>
+				<?php dynamic_sidebar( 'category_content' ); ?>
 				<?php endif; ?>
 				<?php 
 				$category = get_category($primary_category); 
